@@ -24,6 +24,6 @@
       }
     }
   },
-  "forwardPorts": [3000, 5173],
+  "forwardPorts": [3000, 5173, "db:5432"],
   "postCreateCommand": "git config --global --add safe.directory /workspace"
 }
