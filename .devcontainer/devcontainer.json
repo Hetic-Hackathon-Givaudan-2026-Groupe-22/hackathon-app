@@ -25,5 +25,5 @@
     }
   },
   "forwardPorts": [3000, 5173, "db:5432"],
-  "postCreateCommand": "git config --global --add safe.directory /workspace"
+  "postCreateCommand": "git config --global --add safe.directory /workspace && npm ci && (test -f api/.env || cp api/.env.example api/.env)"
 }
