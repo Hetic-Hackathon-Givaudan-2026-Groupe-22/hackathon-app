@@ -10,13 +10,13 @@ L'équipe Data code en Python le score des tendances (buzz ou durable) et le ver
 
 ## Options
 
-1. Service Data séparé, contrat `openapi.yaml` : chaque équipe avance seule. Un service de plus à lancer.
+1. Service Data séparé, contrat `ia/openapi.yaml` : chaque équipe avance seule. Un service de plus à lancer.
 2. Appeler un LLM depuis NestJS : un seul service. Le travail de la Data réécrit en TypeScript.
 3. Notebooks partagés : aucun service. Aucun contrat, rien d'appelable par l'API.
 
 ## Décision
 
-Nous confions l'IA au service Data Sillage, appelé par HTTP sur `POST /sillage/score` selon `openapi.yaml`, parce que la Data garde Python et que l'API code dès aujourd'hui contre les réponses factices.
+Nous confions l'IA au service Data Sillage, appelé par HTTP sur `POST /sillage/score` selon `ia/openapi.yaml`, parce que la Data garde Python et que l'API code dès aujourd'hui contre les réponses factices.
 
 ## Conséquences
 
