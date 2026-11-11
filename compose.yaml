@@ -10,6 +10,8 @@ services:
     command: sleep infinity
     volumes:
       - .:/workspace:cached
+      # La connexion gh (gh auth login) survit à un Rebuild Container
+      - gh-config:/home/node/.config/gh
     extra_hosts:
       # Rend l'hôte joignable sous Linux (Docker Desktop le fait déjà)
       - host.docker.internal:host-gateway
@@ -33,3 +35,6 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
+
+volumes:
+  gh-config:
