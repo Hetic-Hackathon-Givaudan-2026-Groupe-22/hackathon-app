@@ -1,4 +1,5 @@
 import { Test } from '@nestjs/testing';
+import { AuthService } from '../auth/auth.service.js';
 import {
   rechercheSchema,
   TendancesController,
@@ -14,7 +15,13 @@ describe('TendancesController', () => {
     service.lister.mockReset();
     const moduleRef = await Test.createTestingModule({
       controllers: [TendancesController],
-      providers: [{ provide: TendancesService, useValue: service }],
+      providers: [
+        { provide: TendancesService, useValue: service },
+        {
+          provide: AuthService,
+          useValue: { utilisateurDeSession: async () => null },
+        },
+      ],
     }).compile();
     controller = moduleRef.get(TendancesController);
   });
@@ -30,7 +37,10 @@ describe('TendancesController', () => {
     service.lister.mockResolvedValue([]);
     await controller.lister({ q: 'pist' });
     await controller.lister({ q: '' });
-    expect(service.lister.mock.calls).toEqual([['pist'], [undefined]]);
+    expect(service.lister.mock.calls).toEqual([
+      ['pist', undefined],
+      [undefined, undefined],
+    ]);
   });
 });
 

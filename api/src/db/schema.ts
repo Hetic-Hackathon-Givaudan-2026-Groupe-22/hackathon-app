@@ -1,6 +1,7 @@
 // Schéma de la base (ADR 0006) : une table par objet des stories P1
 import {
   boolean,
+  primaryKey,
   date,
   integer,
   jsonb,
@@ -131,3 +132,17 @@ export const sessions = pgTable('sessions', {
     .references(() => utilisateurs.id, { onDelete: 'cascade' }),
   expireLe: timestamp('expire_le', { withTimezone: true }).notNull(),
 });
+
+// Tendances suivies par chaque compte (US-06)
+export const suivis = pgTable(
+  'suivis',
+  {
+    utilisateurId: integer('utilisateur_id')
+      .notNull()
+      .references(() => utilisateurs.id, { onDelete: 'cascade' }),
+    tendanceId: integer('tendance_id')
+      .notNull()
+      .references(() => tendances.id, { onDelete: 'cascade' }),
+  },
+  (t) => [primaryKey({ columns: [t.utilisateurId, t.tendanceId] })],
+);

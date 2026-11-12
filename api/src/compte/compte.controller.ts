@@ -1,4 +1,5 @@
-import { Body, Controller, Patch, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Put, UseGuards } from '@nestjs/common';
+import { slugSchema } from '../tendances/tendances.controller.js';
 import { z } from 'zod';
 import type { UtilisateurPublic } from '../auth/auth.service.js';
 import { SessionGuard, Utilisateur } from '../auth/session.guard.js';
@@ -7,6 +8,11 @@ import { CompteService, METIERS } from './compte.service.js';
 // Corps de PATCH /api/moi (US-05), validé par Zod (ADR 0008)
 export const profilSchema = z.object({
   metier: z.enum(METIERS),
+});
+
+// Corps de PUT /api/moi/suivis (US-06)
+export const suivisSchema = z.object({
+  tendances: z.array(slugSchema).max(50),
 });
 
 // Le compte de la personne connectée
@@ -22,5 +28,20 @@ export class CompteController {
     @Body({ schema: profilSchema }) body: z.infer<typeof profilSchema>,
   ) {
     return this.compte.modifierProfil(u.id, body);
+  }
+
+  // GET /api/moi/suivis : les tendances suivies (US-06)
+  @Get('suivis')
+  suivis(@Utilisateur() u: UtilisateurPublic) {
+    return this.compte.suivis(u.id);
+  }
+
+  // PUT /api/moi/suivis { tendances: [...] } : remplace le choix (US-06)
+  @Put('suivis')
+  remplacerSuivis(
+    @Utilisateur() u: UtilisateurPublic,
+    @Body({ schema: suivisSchema }) body: z.infer<typeof suivisSchema>,
+  ) {
+    return this.compte.remplacerSuivis(u.id, body.tendances);
   }
 }

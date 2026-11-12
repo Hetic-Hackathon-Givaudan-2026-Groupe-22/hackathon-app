@@ -1,5 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { AuthService } from '../auth/auth.service.js';
 import { slugSchema, TendancesController } from './tendances.controller.js';
 import { TendancesService } from './tendances.service.js';
 
@@ -12,7 +13,13 @@ describe('TendancesController.fiche', () => {
     service.trouver.mockReset();
     const moduleRef = await Test.createTestingModule({
       controllers: [TendancesController],
-      providers: [{ provide: TendancesService, useValue: service }],
+      providers: [
+        { provide: TendancesService, useValue: service },
+        {
+          provide: AuthService,
+          useValue: { utilisateurDeSession: async () => null },
+        },
+      ],
     }).compile();
     controller = moduleRef.get(TendancesController);
   });
