@@ -1,32 +1,62 @@
-terme,article_en,label,periode_buzz_ou_emergence
-Matcha,Matcha,tendance,2015-
-Yuzu,Yuzu,tendance,2016-
-Ube,Dioscorea alata,tendance,2020-
-Lait d'avoine,Oat milk,tendance,2018-
-Kombucha,Kombucha,tendance,2015-
-Cold brew,Cold brew coffee,tendance,2015-
-Birria,Birria,tendance,2020-
-Gochujang,Gochujang,tendance,2017-
-Hot honey,Hot honey,tendance,2021-
-Poke bowl,Poke (dish),tendance,2016-
-Açaí bowl,Açaí bowl,tendance,2015-
-Oud (parfum),Agarwood,hors_perimetre,2015-
-Mochi,Mochi,tendance,2018-
-Espresso martini,Espresso martini,tendance,2021-
-Dubai chocolate,Dubai chocolate,tendance,2024-
-Dalgona coffee,Dalgona coffee,buzz,2020
-Grimace Shake,Grimace Shake,buzz,2023
-Unicorn Frappuccino,Unicorn Frappuccino,buzz,2017
-Rainbow bagel,Rainbow bagel,buzz,2016
-Cloud bread,Cloud bread,buzz,2020
-Pancake cereal,Pancake cereal,buzz,2020
-Charcoal ice cream,Charcoal ice cream,buzz,2017
-Freakshake,Freakshake,buzz,2015
-Raindrop cake,Raindrop cake,buzz,2016
-Baked feta pasta,Baked feta pasta,buzz,2021
-Nature's cereal,Nature's cereal,buzz,2021
-Butter board,Butter board,buzz,2022
-Pink Sauce,Pink Sauce,buzz,2022
-Chamoy pickle,Chamoy pickle,buzz,2023
-Whipped lemonade,Whipped lemonade,buzz,2024
-Hojicha,Hōjicha,tendance,2023-
+terme,article_en,label,periode_buzz_ou_emergence,lot,statut_label,justification_label
+Matcha,Matcha,tendance,2015-,lot1,référence initiale,
+Yuzu,Yuzu,tendance,2016-,lot1,référence initiale,
+Ube,Dioscorea alata,tendance,2020-,lot1,référence initiale,
+Lait d'avoine,Oat milk,tendance,2018-,lot1,référence initiale,
+Kombucha,Kombucha,tendance,2015-,lot1,référence initiale,
+Cold brew,Cold brew coffee,tendance,2015-,lot1,référence initiale,
+Birria,Birria,tendance,2020-,lot1,référence initiale,
+Gochujang,Gochujang,tendance,2017-,lot1,référence initiale,
+Hot honey,Hot honey,tendance,2021-,lot1,référence initiale,
+Poke bowl,Poke (dish),tendance,2016-,lot1,référence initiale,
+Açaí bowl,Açaí bowl,tendance,2015-,lot1,référence initiale,
+Oud (parfum),Agarwood,hors_perimetre,2015-,lot1,référence initiale,
+Mochi,Mochi,tendance,2018-,lot1,référence initiale,
+Espresso martini,Espresso martini,tendance,2021-,lot1,référence initiale,
+Dubai chocolate,Dubai chocolate,tendance,2024-,lot1,référence initiale,
+Dalgona coffee,Dalgona coffee,buzz,2020,lot1,référence initiale,
+Grimace Shake,Grimace Shake,buzz,2023,lot1,référence initiale,
+Unicorn Frappuccino,Unicorn Frappuccino,buzz,2017,lot1,référence initiale,
+Rainbow bagel,Rainbow bagel,buzz,2016,lot1,référence initiale,
+Cloud bread,Cloud bread,buzz,2020,lot1,référence initiale,
+Pancake cereal,Pancake cereal,buzz,2020,lot1,référence initiale,
+Charcoal ice cream,Charcoal ice cream,buzz,2017,lot1,référence initiale,
+Freakshake,Freakshake,buzz,2015,lot1,référence initiale,
+Raindrop cake,Raindrop cake,buzz,2016,lot1,référence initiale,
+Baked feta pasta,Baked feta pasta,buzz,2021,lot1,référence initiale,
+Nature's cereal,Nature's cereal,buzz,2021,lot1,référence initiale,
+Butter board,Butter board,buzz,2022,lot1,référence initiale,
+Pink Sauce,Pink Sauce,buzz,2022,lot1,référence initiale,
+Chamoy pickle,Chamoy pickle,buzz,2023,lot1,référence initiale,
+Whipped lemonade,Whipped lemonade,buzz,2024,lot1,référence initiale,
+Hojicha,Hōjicha,tendance,2023-,lot1,référence initiale,
+Bubble tea,Bubble tea,tendance,2018-,lot2,proposé (à valider Roua),boom occidental 2018-2019 puis intérêt tenu ; chaînes installées dans les 5 pays
+Avocado toast,Avocado toast,tendance,2015-,lot2,proposé (à valider Roua),plat de brunch installé depuis 2015 ; label parfois discuté (mode)
+Chili crisp,Chili oil,tendance,2020-,lot2,proposé (à valider Roua),condiment chinois devenu courant aux US et en Europe depuis 2020 ; produits en rayon
+Tajin,Tajín,tendance,2018-,lot2,proposé (à valider Roua),assaisonnement mexicain en croissance continue (US) ; usage cocktails et fruits
+Pandan,Pandanus amaryllifolius,tendance,2019-,lot2,proposé (à valider Roua),arôme d'Asie du Sud-Est en croissance régulière en pâtisserie
+Burrata,Burrata,tendance,2015-,lot2,proposé (à valider Roua),fromage installé sur les cartes de restaurants depuis 2015
+Aperol spritz,Spritz (drink),tendance,2018-,lot2,proposé (à valider Roua),apéritif saisonnier devenu un classique ; forte saisonnalité estivale
+Tteokbokki,Tteok-bokki,tendance,2020-,lot2,proposé (à valider Roua),diffusion avec la vague coréenne ; en rayon hors Corée
+Halloumi,Halloumi,tendance,2015-,lot2,proposé (à valider Roua),fromage grillé installé (Royaume-Uni puis Europe)
+Cold foam,Cold foam,tendance,2018-,lot2,proposé (à valider Roua),lancé en 2018 par les chaînes de café ; devenu standard des boissons froides
+Smash burger,Smash burger,tendance,2021-,lot2,proposé (à valider Roua),technique de burger répandue depuis 2021 ; enseignes dédiées
+Kimchi,Kimchi,tendance,2015-,lot2,proposé (à valider Roua),fermenté coréen en croissance longue hors Corée
+Ginger shot,Ginger shot,tendance,2019-,lot2,proposé (à valider Roua),boisson bien-être en croissance ; produits en grande distribution
+Korean fried chicken,Korean fried chicken,tendance,2016-,lot2,proposé (à valider Roua),chaînes ouvertes à l'international ; intérêt tenu
+Elderflower,Sambucus nigra,tendance,2018-,lot2,proposé (à valider Roua),arôme floral installé (boissons ; cocktails ; pâtisserie)
+Hot cocoa bomb,Hot chocolate bomb,buzz,2020,lot2,proposé (à valider Roua),viral TikTok hiver 2020 puis retombée saisonnière faible
+Frozen honey,Frozen honey,buzz,2022,lot2,proposé (à valider Roua),défi TikTok été 2022 ; quasi disparu ensuite
+Pasta chips,Pasta chips,buzz,2021,lot2,proposé (à valider Roua),recette virale TikTok 2021
+Pesto eggs,Pesto eggs,buzz,2021,lot2,proposé (à valider Roua),recette virale TikTok 2021
+Tortilla hack,Tortilla wrap hack,buzz,2021,lot2,proposé (à valider Roua),astuce virale TikTok janvier 2021
+Baked oats,Baked oats,buzz,2021,lot2,proposé (à valider Roua),recette virale TikTok 2021
+Sushi bake,Sushi bake,buzz,2020,lot2,proposé (à valider Roua),plat viral fin 2020 (Philippines puis US)
+Cloud eggs,Cloud eggs,buzz,2017,lot2,proposé (à valider Roua),photo virale Instagram 2017
+Mermaid toast,Mermaid toast,buzz,2017,lot2,proposé (à valider Roua),toast coloré viral Instagram 2017
+Cottage cheese ice cream,Cottage cheese ice cream,buzz,2023,lot2,proposé (à valider Roua),recette virale TikTok 2023
+Salmon rice bowl,Salmon rice bowl,buzz,2021,lot2,proposé (à valider Roua),recette virale TikTok (Emily Mariko) 2021
+Proffee,Proffee,buzz,2022,lot2,proposé (à valider Roua),café protéiné viral TikTok 2022
+Sushi burrito,Sushi burrito,buzz,2016,lot2,proposé (à valider Roua),concept viral 2015-2016 puis retombé
+Rainbow grilled cheese,Rainbow grilled cheese,buzz,2016,lot2,proposé (à valider Roua),photo virale 2016
+Unicorn latte,Unicorn latte,buzz,2017,lot2,proposé (à valider Roua),boisson colorée virale 2017 (même vague que l'Unicorn Frappuccino)
