@@ -35,6 +35,8 @@ export class TendancesService {
         famille: tendances.famille,
         statut: tendances.statut,
         dateDebut: tendances.dateDebut,
+        origine: tendances.origine,
+        pays: tendances.pays,
         suivie: suivie(utilisateurId),
       })
       .from(tendances)

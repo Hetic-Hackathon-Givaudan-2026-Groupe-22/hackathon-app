@@ -31,6 +31,9 @@ export const tendances = pgTable('tendances', {
   // Tendance suivie par Camille : en tête de liste (US-09)
   suivie: boolean('suivie').notNull().default(false),
   signaux: jsonb('signaux').$type<Signal[]>().notNull(),
+  // Ville où la tendance est née, et villes qu'elle touche (globe, US-08)
+  origine: text('origine').notNull().default(''),
+  pays: jsonb('pays').$type<string[]>().notNull().default([]),
 });
 
 export type Maillon = { nom: string; detail: string; source: string };

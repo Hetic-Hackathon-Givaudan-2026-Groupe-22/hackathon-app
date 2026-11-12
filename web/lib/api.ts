@@ -7,6 +7,9 @@ export type TendanceResume = {
   statut: string;
   dateDebut: string;
   suivie: boolean;
+  // Ville d'origine et villes touchées, pour le globe (US-08)
+  origine: string;
+  pays: string[];
 };
 
 export type Signal = {
