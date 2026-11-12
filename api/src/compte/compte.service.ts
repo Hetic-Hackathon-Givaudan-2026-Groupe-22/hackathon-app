@@ -1,6 +1,7 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { asc, eq, inArray } from 'drizzle-orm';
 import { publier, type UtilisateurPublic } from '../auth/auth.service.js';
+import { hacher, verifier } from '../auth/mot-de-passe.js';
 import { DRIZZLE, type Database } from '../database/database.module.js';
 import { suivis, tendances, utilisateurs } from '../db/schema.js';
 
@@ -63,5 +64,28 @@ export class CompteService {
       }
     });
     return this.suivis(utilisateurId);
+  }
+
+  // US-04 : l'ancien mot de passe d'abord, puis le nouveau deux fois
+  async changerMotDePasse(
+    id: number,
+    saisie: { ancien: string; nouveau: string; confirmation: string },
+  ): Promise<void> {
+    if (saisie.nouveau !== saisie.confirmation) {
+      throw new BadRequestException(
+        'Les deux saisies du nouveau mot de passe diffèrent.',
+      );
+    }
+    const [u] = await this.db
+      .select({ motDePasse: utilisateurs.motDePasse })
+      .from(utilisateurs)
+      .where(eq(utilisateurs.id, id));
+    if (!u || !(await verifier(saisie.ancien, u.motDePasse))) {
+      throw new BadRequestException('Mot de passe actuel incorrect.');
+    }
+    await this.db
+      .update(utilisateurs)
+      .set({ motDePasse: await hacher(saisie.nouveau) })
+      .where(eq(utilisateurs.id, id));
   }
 }
