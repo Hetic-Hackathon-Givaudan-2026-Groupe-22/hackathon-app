@@ -1,21 +1,14 @@
 import { INestApplication } from '@nestjs/common';
-import { Test, TestingModule } from '@nestjs/testing';
 import request from 'supertest';
 import { App } from 'supertest/types.js';
-import { AppModule } from './../src/app.module.js';
-import { configureApp } from './../src/configure-app.js';
+import { demarrerApi } from './setup.js';
 
 // Test fonctionnel : l'API complète, branchée sur la vraie base (DATABASE_URL)
 describe('API (e2e)', () => {
   let app: INestApplication<App>;
 
   beforeAll(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    app = configureApp(moduleFixture.createNestApplication());
-    await app.init();
+    app = await demarrerApi();
   });
 
   afterAll(async () => {
