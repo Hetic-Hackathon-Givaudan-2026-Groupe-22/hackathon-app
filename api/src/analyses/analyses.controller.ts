@@ -5,6 +5,7 @@ import {
   HttpCode,
   Param,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import type { UtilisateurPublic } from '../auth/auth.service.js';
@@ -14,7 +15,24 @@ import { slugSchema } from '../tendances/tendances.controller.js';
 import { AnalysesService } from './analyses.service.js';
 
 // Corps de POST /api/analyses, validé par Zod (ADR 0008)
-export const lancementSchema = z.object({ tendance: slugSchema });
+export const lancementSchema = z.object({
+  tendance: slugSchema,
+  // Rejeu (US-22) : 6, 12 ou 24 mois, et jusqu'à 2 tendances à comparer
+  periodeMois: z.union([z.literal(6), z.literal(12), z.literal(24)]).optional(),
+  comparer: z.array(slugSchema).max(2).optional(),
+});
+
+// Paramètres de GET /api/analyses (historique) et GET /api/analyses/courbes
+export const historiqueSchema = z.object({ tendance: slugSchema });
+export const courbesSchema = z.object({
+  tendances: z
+    .string()
+    .transform((v) => v.split(',').filter(Boolean))
+    .pipe(z.array(slugSchema).min(1).max(3)),
+  mois: z.coerce
+    .number()
+    .pipe(z.union([z.literal(6), z.literal(12), z.literal(24)])),
+});
 
 export const idSchema = z.coerce.number().int().positive();
 
@@ -33,7 +51,21 @@ export class AnalysesController {
   lancer(
     @Body({ schema: lancementSchema }) body: z.infer<typeof lancementSchema>,
   ) {
-    return this.analyses.lancer(body.tendance);
+    return this.analyses.lancer(body.tendance, body);
+  }
+
+  // GET /api/analyses?tendance=pistache : les analyses déjà faites (US-22)
+  @Get()
+  historique(
+    @Query({ schema: historiqueSchema }) q: z.infer<typeof historiqueSchema>,
+  ) {
+    return this.analyses.historique(q.tendance);
+  }
+
+  // GET /api/analyses/courbes?tendances=pistache,dalgona&mois=12 (US-22)
+  @Get('courbes')
+  courbes(@Query({ schema: courbesSchema }) q: z.infer<typeof courbesSchema>) {
+    return this.analyses.courbes(q.tendances, q.mois);
   }
 
   // GET /api/analyses/:id : interrogé chaque seconde par le front (ADR 0007)

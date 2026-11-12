@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 import { apiGet } from '@/lib/api';
 import type { Analyse } from '@/lib/analyse';
 import { couleurFamille } from '@/lib/famille';
-import { formatChrono } from '@/lib/format';
+import { formatChrono, formatDateHeure } from '@/lib/format';
 import { ListeAgents } from './liste-agents';
+import { Rejouer } from './rejouer';
 import { ResultatAnalyse } from './resultat-analyse';
 
 // US-14 : suivi d'une analyse lancée, interrogée chaque seconde (ADR 0007)
@@ -16,6 +17,7 @@ export function SuiviAnalyse({ id }: { id: string }) {
   const [erreur, setErreur] = useState<string | null>(null);
   // Chronomètre local, recalé sur l'API à chaque réponse
   const [ecoule, setEcoule] = useState(0);
+  const [rejeu, setRejeu] = useState(false);
 
   useEffect(() => {
     let fini = false;
@@ -88,7 +90,11 @@ export function SuiviAnalyse({ id }: { id: string }) {
             {enCours ? 'Analyse en cours' : 'Analyse terminée'}
           </span>
           <span className="tb-r">
-            {perimetre.marche} · {perimetre.periode}
+            {perimetre.marche} · {perimetre.periode} · lancée le{' '}
+            {formatDateHeure(analyse.demarreeLe)}
+            {analyse.parametres?.comparaisons.length
+              ? ` · comparée à ${analyse.parametres.comparaisons.join(', ')}`
+              : ''}
           </span>
           {analyse.mode === 'dummy' && (
             <span className="ph">Analyse simulée</span>
@@ -100,12 +106,19 @@ export function SuiviAnalyse({ id }: { id: string }) {
           >
             {formatChrono(ecoule)}
           </span>
-          <Link
-            href={`/tendances/${perimetre.tendance.slug}`}
-            className="btn sm ghost tb-b"
-          >
-            Fiche de la tendance
-          </Link>
+          <span className="tb-b" style={{ display: 'flex', gap: 8 }}>
+            <Link
+              href={`/tendances/${perimetre.tendance.slug}`}
+              className="btn sm ghost"
+            >
+              Fiche de la tendance
+            </Link>
+            {!enCours && (
+              <button className="btn sm" onClick={() => setRejeu(true)}>
+                Rejouer l’analyse
+              </button>
+            )}
+          </span>
         </div>
       </div>
 
@@ -118,6 +131,7 @@ export function SuiviAnalyse({ id }: { id: string }) {
         <ListeAgents agents={analyse.agents} />
         {!enCours && <ResultatAnalyse analyse={analyse} onMaj={setAnalyse} />}
       </section>
+      {rejeu && <Rejouer analyse={analyse} onFermer={() => setRejeu(false)} />}
     </>
   );
 }
