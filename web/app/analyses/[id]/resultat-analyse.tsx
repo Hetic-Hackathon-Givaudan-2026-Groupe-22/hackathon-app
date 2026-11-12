@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import type { Analyse } from '@/lib/analyse';
+import type { Analyse, Message } from '@/lib/analyse';
+import { DetailMessage } from './detail-message';
 import { TourDeTable } from './tour-de-table';
 
 type Onglet = 'tour' | 'chaine' | 'verdict';
@@ -9,6 +10,8 @@ type Onglet = 'tour' | 'chaine' | 'verdict';
 // Résultat d'une analyse terminée ; le tour de table s'ouvre en premier (US-15)
 export function ResultatAnalyse({ analyse }: { analyse: Analyse }) {
   const [onglet, setOnglet] = useState<Onglet>('tour');
+  const [ouvert, setOuvert] = useState<Message | null>(null);
+  const messages = analyse.messages ?? [];
 
   return (
     <section className="flex flex-col gap-4">
@@ -23,7 +26,20 @@ export function ResultatAnalyse({ analyse }: { analyse: Analyse }) {
         </button>
       </div>
 
-      {onglet === 'tour' && <TourDeTable messages={analyse.messages ?? []} />}
+      {onglet === 'tour' && (
+        <>
+          <p className="text-sm opacity-70">
+            Cliquez sur une prise de parole pour lire le message complet.
+          </p>
+          <TourDeTable messages={messages} onOuvrir={setOuvert} />
+        </>
+      )}
+
+      <DetailMessage
+        messages={messages}
+        message={ouvert}
+        onFermer={() => setOuvert(null)}
+      />
     </section>
   );
 }
