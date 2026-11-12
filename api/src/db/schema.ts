@@ -161,3 +161,16 @@ export const suivis = pgTable(
   },
   (t) => [primaryKey({ columns: [t.utilisateurId, t.tendanceId] })],
 );
+
+// Équipes retenues dans le plan d'action d'une analyse (US-27, US-28)
+export const planEquipes = pgTable(
+  'plan_equipes',
+  {
+    analyseId: integer('analyse_id')
+      .notNull()
+      .references(() => analyses.id, { onDelete: 'cascade' }),
+    equipe: text('equipe').notNull(),
+    ordre: integer('ordre').notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.analyseId, t.equipe] })],
+);

@@ -43,6 +43,13 @@
       "when": 1794527122091,
       "tag": "0005_rejeu",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794527519902,
+      "tag": "0006_plan",
+      "breakpoints": true
     }
   ]
 }

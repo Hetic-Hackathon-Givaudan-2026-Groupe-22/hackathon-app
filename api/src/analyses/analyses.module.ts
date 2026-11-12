@@ -6,6 +6,7 @@ import { AnalysesService } from './analyses.service.js';
 
 @Module({
   controllers: [AnalysesController],
+  exports: [AnalysesService],
   providers: [
     AnalysesService,
     // Le simulateur tant que le service Data n'est pas prêt (ADR 0005)
