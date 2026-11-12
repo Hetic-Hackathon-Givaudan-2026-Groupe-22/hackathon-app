@@ -2,6 +2,7 @@
 
 import type { Message } from '@/lib/analyse';
 import { argumentCite, STATUT_MESSAGE } from '@/lib/message';
+import { ListeSources } from './liste-sources';
 
 // US-17 : le message complet d'un agent, son statut et l'argument auquel il répond
 export function DetailMessage({
@@ -43,6 +44,8 @@ export function DetailMessage({
         )}
 
         <p>{message.contenu}</p>
+
+        <ListeSources key={message.tour} sources={message.sources} />
 
         <div className="modal-action">
           <button className="btn" onClick={onFermer} autoFocus>
