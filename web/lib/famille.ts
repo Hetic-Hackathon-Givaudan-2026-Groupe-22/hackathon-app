@@ -30,3 +30,13 @@ const STATUTS: Record<string, { libelle: string; chip: string }> = {
 export function statutTendance(statut: string) {
   return STATUTS[statut] ?? { libelle: statut, chip: 'off' };
 }
+
+// Légende (US-12) : une entrée par couleur, toujours accompagnée de son nom
+export const LEGENDE_FAMILLES = ['Gourmand', 'Agrume', 'Végétal', 'Floral'];
+
+export const LEGENDE_STATUTS = [
+  'emergente',
+  'en_hausse',
+  'stable',
+  'en_baisse',
+].map(statutTendance);

@@ -8,6 +8,7 @@ import { filtrer, SANS_FILTRE, type Filtres } from '@/lib/filtres';
 import { formatMois } from '@/lib/format';
 import { BarreFiltres } from './barre-filtres';
 import { Globe } from './globe';
+import { LegendeStatuts } from './legende';
 
 // US-09 : la liste des tendances, celles suivies en tête
 // US-10 : filtrée au fil de la saisie
@@ -67,6 +68,7 @@ export function ListeTendances() {
             />
           </form>
 
+          <LegendeStatuts />
           {erreur && (
             <p className="hint" role="alert">
               {erreur}
