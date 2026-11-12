@@ -1,4 +1,14 @@
-import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import type { UtilisateurPublic } from '../auth/auth.service.js';
+import { SessionGuard, Utilisateur } from '../auth/session.guard.js';
 import { z } from 'zod';
 import { slugSchema } from '../tendances/tendances.controller.js';
 import { AnalysesService } from './analyses.service.js';
@@ -35,18 +45,24 @@ export class AnalysesController {
   // POST /api/analyses/:id/verdict/validation (US-25)
   @Post(':id/verdict/validation')
   @HttpCode(200)
-  valider(@Param('id', { schema: idSchema }) id: number) {
-    return this.analyses.valider(id);
+  @UseGuards(SessionGuard)
+  valider(
+    @Param('id', { schema: idSchema }) id: number,
+    @Utilisateur() utilisateur: UtilisateurPublic,
+  ) {
+    return this.analyses.valider(id, utilisateur.nom);
   }
 
   // POST /api/analyses/:id/verdict/modification (US-26)
   @Post(':id/verdict/modification')
   @HttpCode(200)
+  @UseGuards(SessionGuard)
   modifier(
     @Param('id', { schema: idSchema }) id: number,
     @Body({ schema: modificationSchema })
     body: z.infer<typeof modificationSchema>,
+    @Utilisateur() utilisateur: UtilisateurPublic,
   ) {
-    return this.analyses.modifier(id, body);
+    return this.analyses.modifier(id, body, utilisateur.nom);
   }
 }
