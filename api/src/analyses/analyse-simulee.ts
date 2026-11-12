@@ -150,7 +150,7 @@ export class AnalyseSimulee implements AnalyseProvider {
             ),
           ]
         : [];
-    const sourcePrix = t.slug === 'pistache' ? [PRIX_PISTACHE_FT] : src(3);
+    const sourcePrix = t.slug === 'pistache' ? [PRIX_PISTACHE_FT] : src(2);
 
     const messages: MessageProduit[] = [
       {

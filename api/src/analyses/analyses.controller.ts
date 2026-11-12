@@ -8,6 +8,12 @@ export const lancementSchema = z.object({ tendance: slugSchema });
 
 export const idSchema = z.coerce.number().int().positive();
 
+// Corps de POST /api/analyses/:id/verdict/modification (US-26)
+export const modificationSchema = z.object({
+  verdict: z.enum(['buzz', 'durable']),
+  justification: z.string().trim().min(10).max(500),
+});
+
 @Controller('analyses')
 export class AnalysesController {
   constructor(private readonly analyses: AnalysesService) {}
@@ -31,5 +37,16 @@ export class AnalysesController {
   @HttpCode(200)
   valider(@Param('id', { schema: idSchema }) id: number) {
     return this.analyses.valider(id);
+  }
+
+  // POST /api/analyses/:id/verdict/modification (US-26)
+  @Post(':id/verdict/modification')
+  @HttpCode(200)
+  modifier(
+    @Param('id', { schema: idSchema }) id: number,
+    @Body({ schema: modificationSchema })
+    body: z.infer<typeof modificationSchema>,
+  ) {
+    return this.analyses.modifier(id, body);
   }
 }
