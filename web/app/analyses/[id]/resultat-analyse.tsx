@@ -4,6 +4,7 @@ import { useState } from 'react';
 import type { Analyse, Message } from '@/lib/analyse';
 import { ChaineMatieres } from './chaine-matieres';
 import { DetailMessage } from './detail-message';
+import { RaisonsVerdict } from './raisons-verdict';
 import { TourDeTable } from './tour-de-table';
 import { VerdictAnalyse } from './verdict-analyse';
 
@@ -48,7 +49,12 @@ export function ResultatAnalyse({ analyse }: { analyse: Analyse }) {
 
       {onglet === 'chaine' && <ChaineMatieres analyse={analyse} />}
 
-      {onglet === 'verdict' && <VerdictAnalyse analyse={analyse} />}
+      {onglet === 'verdict' && (
+        <>
+          <VerdictAnalyse analyse={analyse} />
+          <RaisonsVerdict analyse={analyse} onOuvrir={setOuvert} />
+        </>
+      )}
 
       <DetailMessage
         messages={messages}
