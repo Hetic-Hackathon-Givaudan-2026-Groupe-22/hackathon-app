@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Patch, Put, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Patch,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { slugSchema } from '../tendances/tendances.controller.js';
 import { z } from 'zod';
 import type { UtilisateurPublic } from '../auth/auth.service.js';
@@ -13,6 +21,13 @@ export const profilSchema = z.object({
 // Corps de PUT /api/moi/suivis (US-06)
 export const suivisSchema = z.object({
   tendances: z.array(slugSchema).max(50),
+});
+
+// Corps de PUT /api/moi/mot-de-passe (US-04)
+export const motDePasseSchema = z.object({
+  ancien: z.string().min(1).max(200),
+  nouveau: z.string().min(8).max(200),
+  confirmation: z.string().max(200),
 });
 
 // Le compte de la personne connectée
@@ -43,5 +58,15 @@ export class CompteController {
     @Body({ schema: suivisSchema }) body: z.infer<typeof suivisSchema>,
   ) {
     return this.compte.remplacerSuivis(u.id, body.tendances);
+  }
+
+  // PUT /api/moi/mot-de-passe (US-04) : 204 si le changement a réussi
+  @Put('mot-de-passe')
+  @HttpCode(204)
+  async changerMotDePasse(
+    @Utilisateur() u: UtilisateurPublic,
+    @Body({ schema: motDePasseSchema }) body: z.infer<typeof motDePasseSchema>,
+  ) {
+    await this.compte.changerMotDePasse(u.id, body);
   }
 }

@@ -5,8 +5,9 @@ import { apiGet, apiPatch, apiPut } from '@/lib/api';
 import { useSession, type Utilisateur } from '@/lib/session';
 import { ChoixMetier } from '../choix-metier';
 import { ChoixTendances } from '../choix-tendances';
+import { ChangerMotDePasse } from './mot-de-passe';
 
-// Le profil : métier (US-05), tendances suivies (US-06) ; mot de passe avec US-04
+// Le profil : métier (US-05), tendances suivies (US-06), mot de passe (US-04)
 export default function Profil() {
   const { utilisateur, setUtilisateur } = useSession();
   const [message, setMessage] = useState<string | null>(null);
@@ -78,6 +79,11 @@ export default function Profil() {
               }
             />
           )}
+        </section>
+
+        <section>
+          <h4>Mot de passe</h4>
+          <ChangerMotDePasse />
         </section>
       </div>
     </section>
