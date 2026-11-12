@@ -27,6 +27,8 @@ export const COMPTE_DEMO = {
 export const TENDANCES = [
   {
     slug: 'pistache',
+    origine: 'Dubaï',
+    pays: ['Paris', 'Londres', 'Berlin', 'New York'],
     nom: 'Pistache',
     famille: 'Gourmand',
     statut: 'en_hausse',
@@ -43,6 +45,8 @@ export const TENDANCES = [
   },
   {
     slug: 'matcha',
+    origine: 'Tokyo',
+    pays: ['Los Angeles', 'Paris', 'Londres', 'Séoul'],
     nom: 'Matcha',
     famille: 'Végétal',
     statut: 'stable',
@@ -58,6 +62,8 @@ export const TENDANCES = [
   },
   {
     slug: 'dalgona',
+    origine: 'Séoul',
+    pays: ['New York', 'Londres', 'Paris'],
     nom: 'Dalgona',
     famille: 'Gourmand',
     statut: 'en_baisse',
@@ -77,6 +83,8 @@ export const TENDANCES = [
   },
   {
     slug: 'yuzu',
+    origine: 'Tokyo',
+    pays: ['Paris', 'New York', 'Londres'],
     nom: 'Yuzu',
     famille: 'Agrume',
     statut: 'en_hausse',
@@ -92,6 +100,8 @@ export const TENDANCES = [
   },
   {
     slug: 'ube',
+    origine: 'Manille',
+    pays: ['Los Angeles', 'Londres'],
     nom: 'Ube',
     famille: 'Gourmand',
     statut: 'emergente',
@@ -107,6 +117,8 @@ export const TENDANCES = [
   },
   {
     slug: 'fleur-oranger',
+    origine: 'Marrakech',
+    pays: ['Paris', 'Madrid', 'Londres'],
     nom: "Fleur d'oranger",
     famille: 'Floral',
     statut: 'stable',
