@@ -2,4 +2,5 @@ db/data/
 node_modules/
 api/.env
 dist/
-.env*.tsbuildinfo
+.env
+*.tsbuildinfo
