@@ -1,0 +1,1 @@
+ALTER TABLE "messages" ADD COLUMN "position" integer DEFAULT 50 NOT NULL;
