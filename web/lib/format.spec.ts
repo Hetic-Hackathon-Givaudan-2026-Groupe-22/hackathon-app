@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { formatChrono, formatMois, libelleStatut } from './format';
+import {
+  formatChrono,
+  formatDateHeure,
+  formatMois,
+  libelleStatut,
+} from './format';
 
 describe('formatChrono', () => {
   it('affiche minutes et secondes sur deux chiffres', () => {
@@ -22,5 +27,11 @@ describe('libelleStatut', () => {
   it('traduit les statuts connus et garde les autres', () => {
     expect(libelleStatut('en_hausse')).toBe('En hausse');
     expect(libelleStatut('inconnu')).toBe('inconnu');
+  });
+});
+
+describe('formatDateHeure', () => {
+  it('date et heure de Paris', () => {
+    expect(formatDateHeure('2026-11-12T19:30:00Z')).toBe('12/11/2026 20:30');
   });
 });

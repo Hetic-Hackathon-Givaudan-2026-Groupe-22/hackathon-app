@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import type { Analyse, Message } from '@/lib/analyse';
 import { ChaineMatieres } from './chaine-matieres';
+import { DecisionVerdict } from './decision-verdict';
 import { DetailMessage } from './detail-message';
 import { RaisonsVerdict } from './raisons-verdict';
 import { TourDeTable } from './tour-de-table';
@@ -17,7 +18,13 @@ const ONGLETS: { id: Onglet; libelle: string }[] = [
 ];
 
 // Résultat d'une analyse terminée ; le tour de table s'ouvre en premier (US-15)
-export function ResultatAnalyse({ analyse }: { analyse: Analyse }) {
+export function ResultatAnalyse({
+  analyse,
+  onMaj,
+}: {
+  analyse: Analyse;
+  onMaj: (a: Analyse) => void;
+}) {
   const [onglet, setOnglet] = useState<Onglet>('tour');
   const [ouvert, setOuvert] = useState<Message | null>(null);
   const messages = analyse.messages ?? [];
@@ -53,6 +60,7 @@ export function ResultatAnalyse({ analyse }: { analyse: Analyse }) {
         <>
           <VerdictAnalyse analyse={analyse} />
           <RaisonsVerdict analyse={analyse} onOuvrir={setOuvert} />
+          <DecisionVerdict analyse={analyse} onMaj={onMaj} />
         </>
       )}
 

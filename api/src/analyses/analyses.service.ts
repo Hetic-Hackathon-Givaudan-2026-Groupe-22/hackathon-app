@@ -1,4 +1,9 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { asc, eq, inArray } from 'drizzle-orm';
 import { DRIZZLE, type Database } from '../database/database.module.js';
 import {
@@ -10,6 +15,11 @@ import {
 } from '../db/schema.js';
 import { ANALYSE_PROVIDER, type AnalyseProvider } from './analyse-provider.js';
 import { statutsAgents } from './agents.js';
+
+// Personne qui décide, tant que la connexion (US-03) n'existe pas : annoncée comme simulée
+export function utilisateurCourant(): string {
+  return process.env.DEMO_UTILISATEUR ?? 'Camille (démo)';
+}
 
 // Durée simulée d'une analyse ; ANALYSE_DUREE_MS=0 dans les tests
 export function dureeAnalyseMs(): number {
@@ -158,5 +168,32 @@ export class AnalysesService {
         decideLe: verdict.decideLe?.toISOString() ?? null,
       },
     };
+  }
+
+  // Un verdict ne se décide qu'une fois l'analyse terminée, et une seule fois
+  private async verdictADecider(id: number) {
+    const analyse = await this.obtenir(id);
+    if (analyse.statut !== 'terminee' || !('verdict' in analyse)) {
+      throw new ConflictException(
+        'Analyse en cours : verdict pas encore proposé',
+      );
+    }
+    if (analyse.verdict.statut !== 'propose') {
+      throw new ConflictException('Verdict déjà décidé');
+    }
+  }
+
+  // US-25 : Camille valide le verdict proposé ; il passe au statut « Validé », daté et signé
+  async valider(id: number) {
+    await this.verdictADecider(id);
+    await this.db
+      .update(verdicts)
+      .set({
+        statut: 'valide',
+        decidePar: utilisateurCourant(),
+        decideLe: new Date(),
+      })
+      .where(eq(verdicts.analyseId, id));
+    return this.obtenir(id);
   }
 }

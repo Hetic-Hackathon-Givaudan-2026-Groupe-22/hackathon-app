@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
 import { z } from 'zod';
 import { slugSchema } from '../tendances/tendances.controller.js';
 import { AnalysesService } from './analyses.service.js';
@@ -24,5 +24,12 @@ export class AnalysesController {
   @Get(':id')
   obtenir(@Param('id', { schema: idSchema }) id: number) {
     return this.analyses.obtenir(id);
+  }
+
+  // POST /api/analyses/:id/verdict/validation (US-25)
+  @Post(':id/verdict/validation')
+  @HttpCode(200)
+  valider(@Param('id', { schema: idSchema }) id: number) {
+    return this.analyses.valider(id);
   }
 }
