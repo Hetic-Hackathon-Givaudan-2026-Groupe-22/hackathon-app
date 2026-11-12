@@ -1,7 +1,7 @@
 // Simulateur d'analyse (ADR 0005) : remplace le service Data Sillage tant qu'il n'est pas prêt.
 // Chaque résultat porte mode « dummy » ; seules les données publiques citées sont réelles.
 import { Injectable } from '@nestjs/common';
-import type { Chaine } from '../db/schema.js';
+import type { Chaine, Substitut } from '../db/schema.js';
 import type {
   AnalyseProvider,
   MessageProduit,
@@ -129,6 +129,28 @@ function chaineGenerique(t: TendanceAnalysee): Chaine {
   };
 }
 
+// Hausse de prix lue dans un signal « +35 % sur 12 mois » ; null si absente
+export function hausseDePrix(valeur: string | undefined): number | null {
+  const m = valeur?.match(/\+\s*(\d+(?:[.,]\d+)?)\s*%/);
+  return m ? Number(m[1].replace(',', '.')) : null;
+}
+
+// US-21 : une matière est « sous tension » si son prix a pris 10 % ou plus
+export function substituts(t: TendanceAnalysee): Substitut[] {
+  const signal = t.signaux.find((s) => s.libelle.startsWith('Prix'));
+  const hausse = hausseDePrix(signal?.valeur);
+  if (hausse === null || hausse < 10) return [];
+  return [
+    {
+      matiere: t.nom,
+      substitut: `Arôme ${t.nom.toLowerCase()} de synthèse`,
+      raison: `Le prix de la matière naturelle a pris ${hausse} % en un an : un arôme de synthèse garde la note en limitant le risque d'approvisionnement.`,
+      // Pas de prix documenté pour les substituts : Data doit le chiffrer
+      prix: null,
+    },
+  ];
+}
+
 @Injectable()
 export class AnalyseSimulee implements AnalyseProvider {
   analyser(t: TendanceAnalysee): ResultatAnalyse {
@@ -245,7 +267,10 @@ export class AnalyseSimulee implements AnalyseProvider {
       marche: 'Europe',
       periode: '24 derniers mois',
       messages,
-      chaine: p.chaine ?? chaineGenerique(t),
+      chaine: {
+        ...(p.chaine ?? chaineGenerique(t)),
+        substituts: substituts(t),
+      },
       verdict: {
         propose: p.propose,
         score: p.score,

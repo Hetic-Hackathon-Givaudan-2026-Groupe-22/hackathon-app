@@ -27,6 +27,14 @@ export type Message = {
 
 export type Maillon = { nom: string; detail: string; source: string };
 
+// Substitut d'une matière sous tension (US-21) ; prix null = à chiffrer par Data
+export type Substitut = {
+  matiere: string;
+  substitut: string;
+  raison: string;
+  prix: string | null;
+};
+
 export type Verdict = {
   propose: 'buzz' | 'durable';
   score: number;
@@ -55,6 +63,11 @@ export type Analyse = {
   statut: 'en_cours' | 'terminee';
   agents: Agent[];
   messages?: Message[];
-  chaine?: { notes: Maillon[]; matieres: Maillon[]; prix: Maillon[] };
+  chaine?: {
+    notes: Maillon[];
+    matieres: Maillon[];
+    prix: Maillon[];
+    substituts?: Substitut[];
+  };
   verdict?: Verdict;
 };

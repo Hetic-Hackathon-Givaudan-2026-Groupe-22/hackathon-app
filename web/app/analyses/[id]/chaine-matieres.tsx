@@ -48,6 +48,18 @@ export function ChaineMatieres({ analyse }: { analyse: Analyse }) {
           </li>
         ))}
       </ol>
+
+      {(analyse.chaine?.substituts ?? []).map((sub) => (
+        <div key={sub.substitut} className="card" style={{ marginTop: 14 }}>
+          <div className="eyebrow">Substitut proposé · {sub.matiere}</div>
+          <h3>{sub.substitut}</h3>
+          <p style={{ margin: 0 }}>{sub.raison}</p>
+          <p style={{ margin: 0 }}>
+            Prix :{' '}
+            {sub.prix ?? <span className="chip wait">À chiffrer par Data</span>}
+          </p>
+        </div>
+      ))}
     </div>
   );
 }

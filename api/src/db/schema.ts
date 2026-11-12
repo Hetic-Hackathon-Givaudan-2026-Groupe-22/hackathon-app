@@ -38,10 +38,19 @@ export const tendances = pgTable('tendances', {
 
 export type Maillon = { nom: string; detail: string; source: string };
 
+// Substitut d'une matière sous tension (US-21) ; prix null = à chiffrer par Data
+export type Substitut = {
+  matiere: string;
+  substitut: string;
+  raison: string;
+  prix: string | null;
+};
+
 export type Chaine = {
   notes: Maillon[];
   matieres: Maillon[];
   prix: Maillon[];
+  substituts?: Substitut[];
 };
 
 export const analyses = pgTable('analyses', {
