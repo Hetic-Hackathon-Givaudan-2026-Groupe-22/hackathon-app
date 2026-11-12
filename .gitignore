@@ -3,3 +3,9 @@ node_modules/
 api/.env
 dist/
 .env
+# Data / notebooks (ia/)
+ia/.venv/
+ia/**/.ipynb_checkpoints/
+
+ia/_to_delete/
+__pycache__/

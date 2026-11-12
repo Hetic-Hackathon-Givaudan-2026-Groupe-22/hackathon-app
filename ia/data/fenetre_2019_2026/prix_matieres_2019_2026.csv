@@ -1,0 +1,280 @@
+﻿matiere,mois,valeur,unite,source,serie_id,source_url,flag
+cacao,2019-01,2263.33503646733,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-02,2255.804973027123,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-03,2200.484673697226,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-04,2331.131022093401,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-05,2315.072399680168,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-06,2407.731087737107,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-07,2416.529621091949,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-08,2194.69841555263,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-09,2305.34171365752,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-10,2435.274540237115,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-11,2519.662532311881,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2019-12,2444.792078123784,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-01,2603.075561212662,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-02,2716.214397777276,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-03,2338.470536222704,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-04,2270.238696846814,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-05,2317.453931564956,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-06,2228.617635584422,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-07,2102.07713180143,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-08,2348.676309262007,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-09,2457.611923658554,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-10,2292.054175567769,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-11,2359.243716161572,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2020-12,2405.76492397114,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-01,2392.973563420423,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-02,2383.028506656238,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-03,2471.204322165759,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-04,2366.486057293951,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-05,2409.357431265938,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-06,2366.29376388017,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-07,2328.27955315558,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-08,2477.500361669303,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-09,2552.76442186016,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-10,2573.725247930012,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-11,2405.874465485019,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2021-12,2378.73085848743,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-01,2467.356862582399,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-02,2551.326883584084,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-03,2459.398319640722,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-04,2457.384107289146,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-05,2363.871129036004,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-06,2323.116687244048,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-07,2239.402286127753,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-08,2270.102773614096,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-09,2220.214244629552,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-10,2243.631098250515,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-11,2380.803070269115,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2022-12,2456.226953758389,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-01,2540.076523955292,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-02,2586.526817028014,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-03,2665.791316276091,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-04,2823.273984567432,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-05,2905.341733304136,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-06,3124.43913501557,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-07,3346.634548507881,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-08,3434.406596186068,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-09,3629.166883389024,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-10,3691.614716182179,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-11,4095.356207101358,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2023-12,4253.904329112389,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-01,4442.919775442222,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-02,5640.087618677671,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-03,7297.553884071729,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-04,9865.206034438286,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-05,7768.098379830387,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-06,8380.12660951907,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-07,7164.628035294687,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-08,6791.953817048214,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-09,6421.825658655629,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-10,6582.858019361083,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-11,7919.328269586367,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2024-12,10412.18571198528,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-01,10710.345483277108,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-02,9792.664209159077,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-03,8079.556127661486,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-04,8132.218491705632,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-05,9000.787338851027,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-06,8401.952731292095,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-07,7371.890765758022,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-08,7604.123627133267,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-09,7006.525855528091,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-10,5953.5678143082,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-11,5590.70810325549,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2025-12,5814.856918567877,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2026-01,5018.131520727123,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2026-02,3587.185951183889,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2026-03,3241.488951294424,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2026-04,3392.143554226435,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2026-05,4142.973092507544,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2026-06,4395.458431945616,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2026-07,5619.189873586655,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2026-08,5990.497009722438,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+cacao,2026-09,5918.981427980948,USD_par_tonne,FMI via FRED,PCOCOUSDM,https://fred.stlouisfed.org/series/PCOCOUSDM,
+pistache,2019-01,290.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-02,290.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-03,290.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-04,290.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-05,290.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-06,290.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-07,290.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-08,290.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-09,290.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-10,254.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-11,254.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2019-12,254.2,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-01,254.2,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-02,254.2,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-03,254.2,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-04,308.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-05,308.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-06,308.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-07,311.6,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-08,311.6,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-09,306.9,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-10,308.3,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-11,272.8,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2020-12,278.0,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-01,270.9,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-02,272.8,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-03,272.8,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-04,272.8,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-05,272.8,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-06,272.8,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-07,274.089,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-08,264.995,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-09,272.789,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-10,272.789,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-11,299.093,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2021-12,285.683,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-01,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-02,264.995,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-03,304.208,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-04,319.879,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-05,314.681,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-06,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-07,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-08,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-09,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-10,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-11,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2022-12,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-01,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-02,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-03,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-04,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-05,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-06,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-07,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-08,257.201,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-09,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-10,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-11,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2023-12,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-01,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-02,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-03,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-04,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-05,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-06,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-07,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-08,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-09,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-10,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-11,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2024-12,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-01,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-02,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-03,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-04,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-05,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-06,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-07,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-08,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-09,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-10,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-11,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2025-12,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2026-01,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2026-02,214.334,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2026-03,235.367,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2026-04,235.367,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2026-05,235.367,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2026-06,235.367,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2026-07,235.367,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2026-08,235.367,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+pistache,2026-09,240.374,indice_dec1991_100,BLS PPI via FRED,WPU01190106,https://fred.stlouisfed.org/series/WPU01190106,serie_peu_reactive
+cafe_arabica,2019-01,128.3573913043478,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-02,128.454,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-03,123.8885714285714,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-04,120.9904545454545,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-05,120.5491304347826,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-06,129.7235,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-07,135.4704347826087,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-08,126.2795454545455,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-09,128.8942857142857,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-10,127.0513043478261,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-11,140.9814285714286,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2019-12,156.0290909090909,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-01,142.9365217391304,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-02,135.5005,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-03,148.3272727272727,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-04,154.6304545454545,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-05,149.9161904761905,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-06,141.52,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-07,146.7808695652174,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-08,163.0714285714286,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-09,166.5645454545455,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-10,152.0568181818182,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-11,150.7261904761905,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2020-12,157.9526086956522,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-01,160.8195238095238,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-02,166.429,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-03,167.0508695652174,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-04,168.6486363636364,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-05,186.46285714285716,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-06,192.0645454545455,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-07,204.50090909090912,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-08,216.4345454545455,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-09,225.5368181818182,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-10,241.07333333333327,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-11,258.9781818181818,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2021-12,268.3291304347826,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-01,271.0814285714286,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-02,279.8335,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-03,258.9934782608696,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-04,265.397619047619,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-05,260.4495454545455,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-06,273.7636363636364,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-07,255.90666666666672,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-08,268.4834782608696,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-09,267.49227272727273,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-10,240.08238095238096,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-11,213.71818181818176,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2022-12,210.3886363636364,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-01,206.76,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-02,229.506,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-03,222.66391304347832,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-04,229.9555,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-05,220.12130434782608,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-06,207.385,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-07,193.49428571428567,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-08,186.34695652173912,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-09,183.5890476190476,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-10,183.9513636363636,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-11,197.43318181818177,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2023-12,210.3104761904762,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-01,203.8791304347826,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-02,208.78333333333327,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-03,208.91333333333327,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-04,239.8663636363636,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-05,232.34260869565216,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-06,248.405,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-07,257.09869565217394,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-08,261.4377272727273,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-09,278.7604761904762,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-10,276.7773913043478,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-11,304.9528571428571,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2024-12,344.1186363636364,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-01,353.9334782608696,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-02,409.5165,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-03,404.2104761904762,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-04,392.9127272727273,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-05,397.5886363636364,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-06,363.16238095238094,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-07,316.725652173913,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-08,365.6857142857143,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-09,399.5513636363636,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-10,403.7926086956522,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-11,409.679,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2025-12,380.4172727272728,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2026-01,363.91045454545446,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2026-02,321.3525,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2026-03,334.11181818181814,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2026-04,331.2227272727273,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2026-05,315.0595238095238,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2026-06,307.8263636363636,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2026-07,359.1622727272727,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2026-08,360.6319047619048,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,
+cafe_arabica,2026-09,330.1219047619048,cents_USD_par_livre,FMI via FRED,PCOFFOTMUSDM,https://fred.stlouisfed.org/series/PCOFFOTMUSDM,

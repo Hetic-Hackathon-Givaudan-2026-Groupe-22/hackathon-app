@@ -1,0 +1,3 @@
+﻿source_id,url_racine,methode,licence,date_acces,restrictions,limites
+wikimedia_pageviews,https://wikimedia.org/api/rest_v1/metrics/pageviews/,"API REST officielle (per-article, monthly, user)",CC0,2026-11-12,User-Agent identifiable ; rythme limité,langue ≠ pays ; vues humaines estimées (bots filtrés) ; articles absents pour certains buzz
+wikidata,https://www.wikidata.org/w/api.php,API wbgetentities (sitelinks),CC0,2026-11-12,aucune authentification,dépend du titre anglais choisi (redirections)

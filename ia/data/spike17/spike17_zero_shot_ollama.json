@@ -1,0 +1,165 @@
+{
+ "execute_le": "2026-11-12T09:39:27.213Z",
+ "parametres": {
+  "temperature": 0,
+  "seed": 42,
+  "think": false,
+  "format": "enum JSON"
+ },
+ "etat": "fini",
+ "resultats": [
+  {
+   "tendance": "matcha",
+   "etiquette_proposee": "végétal / herbacé",
+   "prediction": "torréfié / café-cacao",
+   "correct": false,
+   "secondes": 11
+  },
+  {
+   "tendance": "yuzu",
+   "etiquette_proposee": "agrumes",
+   "prediction": "agrumes",
+   "correct": true,
+   "secondes": 6
+  },
+  {
+   "tendance": "ube",
+   "etiquette_proposee": "sucré / confiserie",
+   "prediction": "fruité",
+   "correct": false,
+   "secondes": 5.5
+  },
+  {
+   "tendance": "oat milk",
+   "etiquette_proposee": "lacté / crémeux",
+   "prediction": "lacté / crémeux",
+   "correct": true,
+   "secondes": 5.9
+  },
+  {
+   "tendance": "kombucha",
+   "etiquette_proposee": "fermenté / umami",
+   "prediction": "fermenté / umami",
+   "correct": true,
+   "secondes": 6.5
+  },
+  {
+   "tendance": "cold brew coffee",
+   "etiquette_proposee": "torréfié / café-cacao",
+   "prediction": "torréfié / café-cacao",
+   "correct": true,
+   "secondes": 6.8
+  },
+  {
+   "tendance": "birria",
+   "etiquette_proposee": "épicé / piquant",
+   "prediction": "épicé / piquant",
+   "correct": true,
+   "secondes": 6.5
+  },
+  {
+   "tendance": "gochujang",
+   "etiquette_proposee": "épicé / piquant",
+   "prediction": "épicé / piquant",
+   "correct": true,
+   "secondes": 6.8
+  },
+  {
+   "tendance": "hot honey",
+   "etiquette_proposee": "épicé / piquant",
+   "prediction": "épicé / piquant",
+   "correct": true,
+   "secondes": 6.6
+  },
+  {
+   "tendance": "mochi",
+   "etiquette_proposee": "sucré / confiserie",
+   "prediction": "sucré / confiserie",
+   "correct": true,
+   "secondes": 6.1
+  },
+  {
+   "tendance": "espresso martini",
+   "etiquette_proposee": "torréfié / café-cacao",
+   "prediction": "torréfié / café-cacao",
+   "correct": true,
+   "secondes": 5.9
+  },
+  {
+   "tendance": "Dubai chocolate",
+   "etiquette_proposee": "fruits à coque",
+   "prediction": "torréfié / café-cacao",
+   "correct": false,
+   "secondes": 6.2
+  },
+  {
+   "tendance": "pistachio",
+   "etiquette_proposee": "fruits à coque",
+   "prediction": "fruits à coque",
+   "correct": true,
+   "secondes": 5.9
+  },
+  {
+   "tendance": "dalgona coffee",
+   "etiquette_proposee": "torréfié / café-cacao",
+   "prediction": "torréfié / café-cacao",
+   "correct": true,
+   "secondes": 6.6
+  },
+  {
+   "tendance": "lavender latte",
+   "etiquette_proposee": "floral",
+   "prediction": "lacté / crémeux",
+   "correct": false,
+   "secondes": 7.2
+  },
+  {
+   "tendance": "hibiscus tea",
+   "etiquette_proposee": "floral",
+   "prediction": "floral",
+   "correct": true,
+   "secondes": 6
+  },
+  {
+   "tendance": "black sesame",
+   "etiquette_proposee": "fruits à coque",
+   "prediction": "torréfié / café-cacao",
+   "correct": false,
+   "secondes": 7
+  },
+  {
+   "tendance": "miso caramel",
+   "etiquette_proposee": "fermenté / umami",
+   "prediction": "fermenté / umami",
+   "correct": true,
+   "secondes": 6.1
+  },
+  {
+   "tendance": "calamansi",
+   "etiquette_proposee": "agrumes",
+   "prediction": "agrumes",
+   "correct": true,
+   "secondes": 5.5
+  },
+  {
+   "tendance": "elderflower",
+   "etiquette_proposee": "floral",
+   "prediction": "floral",
+   "correct": true,
+   "secondes": 5
+  }
+ ],
+ "modele": "qwen3.5:4b-q4_K_M (Ollama, zero-shot génératif)",
+ "familles": [
+  "sucré / confiserie",
+  "fruité",
+  "agrumes",
+  "lacté / crémeux",
+  "torréfié / café-cacao",
+  "épicé / piquant",
+  "végétal / herbacé",
+  "fermenté / umami",
+  "fruits à coque",
+  "floral"
+ ]
+}

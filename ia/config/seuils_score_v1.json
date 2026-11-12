@@ -1,0 +1,36 @@
+{
+  "_version": "score_v1",
+  "_ecrit_le": "2026-11-12",
+  "_regle": "Seuils fixés AVANT le test sur le passé (critère du ticket #25). Toute modification après le test = nouvelle version (score_v2), jamais une retouche de v1.",
+  "_provenance": "Fixés par raisonnement sur la définition buzz/durable (un buzz monte en 1-2 mois puis retombe ; une tendance durable tient plusieurs mois). Pas d'ajustement sur les résultats du rejeu.",
+
+  "fenetre_mois": 12,
+  "base_debut_mois": 24,
+  "base_fin_mois": 13,
+  "recent_mois": 3,
+
+  "duree": {
+    "_def": "Part des 12 derniers mois (jusqu'à T inclus) où l'intérêt atteint au moins 50 % du maximum de ces 12 mois. Médiane sur les zones qui ont un signal.",
+    "seuil_relatif_max": 0.5
+  },
+  "geographie": {
+    "_def": "Part des zones observées où l'intérêt récent (moyenne des 3 derniers mois) dépasse 1,5 fois la base (médiane des mois T-24 à T-13) et au moins 5 points d'indice.",
+    "ratio_hausse": 1.5,
+    "niveau_min_recent": 5
+  },
+  "signal_min": {
+    "_def": "Une zone a un signal si le maximum de ses 12 derniers mois atteint au moins ce niveau (indice 0-100).",
+    "niveau": 5
+  },
+  "poids": { "duree": 0.6, "geographie": 0.4 },
+  "verdict": {
+    "_def": "score >= suivre -> suivre ; score >= surveiller -> surveiller ; sinon ignorer. Aucune zone avec signal -> ignorer (signal insuffisant).",
+    "suivre": 60,
+    "surveiller": 35
+  },
+  "propagation": {
+    "_def": "Mois d'apparition par zone = premier mois où l'intérêt atteint 2 fois la base et au moins 10 points. Ordre et décalage en mois entre zones. Lead/lag ≠ causalité.",
+    "ratio_apparition": 2.0,
+    "niveau_apparition": 10
+  }
+}

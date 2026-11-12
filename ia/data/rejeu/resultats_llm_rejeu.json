@@ -1,0 +1,67 @@
+{
+ "execute_le": "2026-11-12T09:36:51.364Z",
+ "parametres": {
+  "temperature": 0,
+  "seed": 42,
+  "format": "json",
+  "think": "false (qwen3.5)"
+ },
+ "resultats": [
+  {
+   "model": "qwen3.5:4b-q4_K_M",
+   "masque": "Tendance A",
+   "type": "aveugle",
+   "reponse": "{\n  \"verdict\": \"durable\",\n  \"confiance\": 0.85,\n  \"justification\": \"Les indices restent élevés et stables (moyenne >30) sans pic explosif ni chute brutale, indiquant une demande constante plutôt qu'un phénomène éphémère. Le score déterministe de 60 confirme cette tendance régulière.\"\n}",
+   "secondes": 78
+  },
+  {
+   "model": "qwen3.5:4b-q4_K_M",
+   "masque": "Tendance A",
+   "type": "controle_nom_visible",
+   "reponse": "{\n  \"verdict\": \"durable\",\n  \"confiance\": 0.85,\n  \"justification\": \"Les tendances montrent une stabilité mensuelle avec des pics saisonniers réguliers (été et fin d'année) sans signe de déclin structurel dans les pays majeurs. Le score déterministe élevé de 60/100 confirme la pérennité du sujet malgré l'absence de données post-février 2024.\"\n}",
+   "secondes": 57.8
+  },
+  {
+   "model": "qwen3.5:4b-q4_K_M",
+   "masque": "Tendance B",
+   "type": "aveugle",
+   "reponse": "{\n  \"verdict\": \"indetermine\",\n  \"confiance\": 0.0,\n  \"justification\": \"L'absence totale de données avant février 2020 et le seul point isolé au Japon en février ne permettent pas d'établir une tendance durable ou un buzz significatif. Le score déterministe de 5.0 confirme l'insuffisance des informations pour formuler un avis fiable.\"\n}",
+   "secondes": 41.5
+  },
+  {
+   "model": "qwen3.5:4b-q4_K_M",
+   "masque": "Tendance B",
+   "type": "controle_nom_visible",
+   "reponse": "{\n  \"verdict\": \"indetermine\",\n  \"confiance\": 0.1,\n  \"justification\": \"L'absence totale de données avant février 2020 et le seul point de valeur (5) en Corée du mois suivant créent un échantillon statistiquement insuffisant pour prédire une tendance durable.\"\n}",
+   "secondes": 41
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "masque": "Tendance A",
+   "type": "aveugle",
+   "reponse": "{\n  \"verdict\": \"durable\",\n  \"confiance\": 0.8,\n  \"justification\": \"Le système de recherche Google Trends indique une tendance positive pour 'Tendance A' depuis 2022, avec une croissance constante et une forte prédominance dans les pays francophones (FR, JP, KR). La tendance est également soutenue par les données US, qui montrent une croissance significative. La confiance est élevée car la tendance semble s'inscrire dans une tendance globale positive.\"\n}",
+   "secondes": 31.8
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "masque": "Tendance A",
+   "type": "controle_nom_visible",
+   "reponse": "{\n  \"verdict\": \"durable\",\n  \"confiance\": 0.8,\n  \"justification\": \"Le score déterministe du système vaut 60.0/100 (durée 100.0, géographie 0.0), verdict proposé : suivre.\"\n}",
+   "secondes": 17.8
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "masque": "Tendance B",
+   "type": "aveugle",
+   "reponse": "{\n  \"verdict\": \"durable\",\n  \"confiance\": 0.8,\n  \"justification\": \"Le score déterministe du système vaut 5.0/100 (durée 8.3, géographie 0.0), verdict proposé : ignorer. Le système a une confiance de 0.8, ce qui indique une forte probabilité de durabilité. Les chiffres de Google Trends montrent une baisse constante de 2019 à 2020, avec une légère augmentation en 2020-02, ce qui indique une tendance persistante et stable. La baisse continue indique une tendance durable.\"\n}",
+   "secondes": 17.1
+  },
+  {
+   "model": "qwen2.5:1.5b",
+   "masque": "Tendance B",
+   "type": "controle_nom_visible",
+   "reponse": "{\n  \"verdict\": \"durable\",\n  \"confiance\": 0.8,\n  \"justification\": \"Le score déterministe du système vaut 5.0/100 (durée 8.3, géographie 0.0), verdict proposé : ignorer. Le système de recherche Google Trends indique une tendance persistante de l'utilisation de la recette Dalgona coffee en France, en Japon, en Corée du Sud et aux États-Unis. Cela signifie que cette recette a une forte popularité et une longue durée de vie, ce qui est un indicateur de tendance durable.\"\n}",
+   "secondes": 16.8
+  }
+ ]
+}

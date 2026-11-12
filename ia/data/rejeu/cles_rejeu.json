@@ -1,0 +1,10 @@
+{
+  "Tendance A": {
+    "topic_id": "pistachio",
+    "nom": "pistache"
+  },
+  "Tendance B": {
+    "topic_id": "dalgona_coffee",
+    "nom": "Dalgona coffee"
+  }
+}

@@ -1,0 +1,7 @@
+jupyter
+pandas
+matplotlib
+requests
+pyarrow
+nbformat
+nbconvert

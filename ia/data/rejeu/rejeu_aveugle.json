@@ -1,0 +1,70 @@
+[
+  {
+    "tendance": "Tendance A",
+    "date_figee": "2024-02",
+    "score": 60.0,
+    "composantes": {
+      "duree": 100.0,
+      "geographie": 0.0
+    },
+    "verdict_propose": "suivre",
+    "motif": "intérêt tenu dans le temps",
+    "zones_observees": [
+      "AE",
+      "FR",
+      "JP",
+      "KR",
+      "US"
+    ],
+    "zones_avec_signal": [
+      "AE",
+      "FR",
+      "JP",
+      "KR",
+      "US"
+    ],
+    "zones_en_hausse": [],
+    "propagation": [
+      {
+        "zone": "AE",
+        "mois": "2019-09",
+        "decalage_mois": 0
+      },
+      {
+        "zone": "JP",
+        "mois": "2020-11",
+        "decalage_mois": 14
+      }
+    ],
+    "version": "score_v1",
+    "mode": "rejoue",
+    "date_rejeu": "2024-03-15",
+    "source": "google_trends_ui, 5 pays, raw/google_trends/"
+  },
+  {
+    "tendance": "Tendance B",
+    "date_figee": "2020-02",
+    "score": 5.0,
+    "composantes": {
+      "duree": 8.3,
+      "geographie": 0.0
+    },
+    "verdict_propose": "ignorer",
+    "motif": "intérêt bref ou peu diffusé",
+    "zones_observees": [
+      "FR",
+      "JP",
+      "KR",
+      "US"
+    ],
+    "zones_avec_signal": [
+      "KR"
+    ],
+    "zones_en_hausse": [],
+    "propagation": [],
+    "version": "score_v1",
+    "mode": "rejoue",
+    "date_rejeu": "2020-03-15",
+    "source": "google_trends_ui, 5 pays, raw/google_trends/"
+  }
+]
