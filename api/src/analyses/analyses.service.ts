@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   Inject,
   Injectable,
@@ -181,6 +182,7 @@ export class AnalysesService {
     if (analyse.verdict.statut !== 'propose') {
       throw new ConflictException('Verdict déjà décidé');
     }
+    return analyse.verdict;
   }
 
   // US-25 : Camille valide le verdict proposé ; il passe au statut « Validé », daté et signé
@@ -190,6 +192,31 @@ export class AnalysesService {
       .update(verdicts)
       .set({
         statut: 'valide',
+        decidePar: utilisateurCourant(),
+        decideLe: new Date(),
+      })
+      .where(eq(verdicts.analyseId, id));
+    return this.obtenir(id);
+  }
+
+  // US-26 : Camille remplace le verdict proposé, justification obligatoire ;
+  // le verdict de Sillage reste enregistré à côté du sien
+  async modifier(
+    id: number,
+    choix: { verdict: 'buzz' | 'durable'; justification: string },
+  ) {
+    const propose = await this.verdictADecider(id);
+    if (choix.verdict === propose.propose) {
+      throw new BadRequestException(
+        'Choisissez un verdict différent de celui proposé, ou validez-le',
+      );
+    }
+    await this.db
+      .update(verdicts)
+      .set({
+        statut: 'modifie',
+        final: choix.verdict,
+        justification: choix.justification,
         decidePar: utilisateurCourant(),
         decideLe: new Date(),
       })
