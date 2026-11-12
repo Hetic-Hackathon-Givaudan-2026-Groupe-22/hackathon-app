@@ -69,6 +69,8 @@ export const messages = pgTable('messages', {
   contenu: text('contenu').notNull(),
   // etabli | conteste | ouvert (US-17)
   statut: text('statut').notNull(),
+  // Position de l'agent après ce tour : 0 = buzz, 100 = durable (US-16)
+  position: integer('position').notNull().default(50),
 });
 
 export const sources = pgTable('sources', {
