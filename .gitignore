@@ -4,3 +4,5 @@ api/.env
 dist/
 .env
 *.tsbuildinfo
+.next/
+next-env.d.ts
