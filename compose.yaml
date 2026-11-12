@@ -1,12 +1,20 @@
 # La stack de développement. Versions figées : les mêmes qu'en production.
+# docker compose up : base, API et front, la tranche complète (ADR 0010).
+# VS Code ne démarre que dev et db (runServices dans devcontainer.json).
 name: hackathon
+
+x-poste: &poste
+  build:
+    context: .
+    dockerfile: .devcontainer/Dockerfile
+  working_dir: /workspace
+  volumes:
+    - .:/workspace:cached
 
 services:
   # Le poste de travail : VS Code s'y attache, on y lance l'API et le front
   dev:
-    build:
-      context: .
-      dockerfile: .devcontainer/Dockerfile
+    <<: *poste
     command: sleep infinity
     volumes:
       - .:/workspace:cached
@@ -28,13 +36,56 @@ services:
     volumes:
       # Les données, dans un dossier du projet (ignoré par git)
       - ./db/data:/var/lib/postgresql/data
-      # Schéma et données de test, joués au premier démarrage
+      # Création de la base vide ; le schéma vient des migrations (ADR 0006)
       - ./db/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U app -d app']
       interval: 5s
       timeout: 3s
       retries: 10
+
+  # Installe les dépendances une seule fois, si node_modules manque (clone neuf)
+  install:
+    <<: *poste
+    user: node
+    command: sh -c 'test -d node_modules/.bin || npm ci'
+
+  # L'API NestJS : migrations, données de démonstration, puis serveur
+  api:
+    <<: *poste
+    user: node
+    command: >-
+      sh -c 'npm run db:migrate -w api &&
+      npm run db:seed -w api &&
+      npm run start -w api'
+    environment:
+      DATABASE_URL: postgres://app:app@db:5432/app
+    ports:
+      - '${API_PORT:-3000}:3000'
+    depends_on:
+      db:
+        condition: service_healthy
+      install:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ['CMD', 'curl', '-fs', 'http://localhost:3000/api/health']
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  # Le front Next.js, construit puis servi ; il relaie /api vers le service api
+  web:
+    <<: *poste
+    user: node
+    command: sh -c 'npm run build -w web && npm run start -w web'
+    environment:
+      API_URL: http://api:3000
+      NEXT_DIST_DIR: .next/compose
+    ports:
+      - '${WEB_PORT:-5173}:5173'
+    depends_on:
+      api:
+        condition: service_healthy
 
 volumes:
   gh-config:
