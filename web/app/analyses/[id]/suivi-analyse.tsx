@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { apiGet } from '@/lib/api';
 import type { Analyse } from '@/lib/analyse';
 import { formatChrono } from '@/lib/format';
+import { ListeAgents } from './liste-agents';
+import { ResultatAnalyse } from './resultat-analyse';
 
 // US-14 : suivi d'une analyse lancée, interrogée chaque seconde (ADR 0007)
 export function SuiviAnalyse({ id }: { id: string }) {
@@ -113,6 +115,10 @@ export function SuiviAnalyse({ id }: { id: string }) {
           max={analyse.dureeMs}
         />
       )}
+
+      <ListeAgents agents={analyse.agents} />
+
+      {!enCours && <ResultatAnalyse analyse={analyse} />}
     </>
   );
 }
