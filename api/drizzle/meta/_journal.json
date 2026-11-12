@@ -15,6 +15,13 @@
       "when": 1794511437608,
       "tag": "0001_position_messages",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794524249879,
+      "tag": "0002_comptes",
+      "breakpoints": true
     }
   ]
 }

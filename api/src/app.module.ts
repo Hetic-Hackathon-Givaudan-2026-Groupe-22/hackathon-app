@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AnalysesModule } from './analyses/analyses.module.js';
+import { AuthModule } from './auth/auth.module.js';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { DatabaseModule } from './database/database.module.js';
@@ -7,7 +8,7 @@ import { HealthController } from './health/health.controller.js';
 import { TendancesModule } from './tendances/tendances.module.js';
 
 @Module({
-  imports: [DatabaseModule, TendancesModule, AnalysesModule],
+  imports: [DatabaseModule, AuthModule, TendancesModule, AnalysesModule],
   controllers: [AppController, HealthController],
   providers: [AppService],
 })
