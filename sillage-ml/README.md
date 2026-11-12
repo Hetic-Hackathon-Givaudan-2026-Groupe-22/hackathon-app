@@ -1,6 +1,6 @@
 # Sillage — Livrable collectif Data & ML | Équipe G22 — Auralis
 
-**À lire en premier :** [`LIVRABLES_V2.md`](LIVRABLES_V2.md) (les 5 livrables), [`CONTRIBUTIONS.md`](CONTRIBUTIONS.md) (travail collectif et provenance), [`GUIDE_PUBLICATION_EQUIPE.md`](GUIDE_PUBLICATION_EQUIPE.md) (publication GitHub).
+**À lire en premier :** [`LIVRABLES_V2.md`](LIVRABLES_V2.md) (les 5 livrables), [`GUIDE_PUBLICATION_EQUIPE.md`](GUIDE_PUBLICATION_EQUIPE.md) (publication GitHub).
 
 **Date :** 12 novembre 2026 · **Statut :** V2 expérimentale · **Projet :** Sillage — Équipe G22 / Auralis · **Dépôt officiel :** `hackathon-app` (la branche de contribution n’est pas l’identité de l’équipe).
 
