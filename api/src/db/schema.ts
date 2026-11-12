@@ -60,6 +60,9 @@ export const analyses = pgTable('analyses', {
     .references(() => tendances.id),
   marche: text('marche').notNull(),
   periode: text('periode').notNull(),
+  // Paramètres du rejeu (US-22) : période en mois, tendances comparées
+  periodeMois: integer('periode_mois').notNull().default(24),
+  comparaisons: jsonb('comparaisons').$type<string[]>().notNull().default([]),
   // dummy tant que le service Data n'est pas branché (ADR 0005)
   mode: text('mode').notNull(),
   demarreeLe: timestamp('demarree_le', { withTimezone: true })

@@ -58,6 +58,8 @@ export type Analyse = {
     periode: string;
   };
   demarreeLe: string;
+  // Paramètres du rejeu (US-22)
+  parametres?: { periodeMois: number; comparaisons: string[] };
   dureeMs: number;
   ecouleMs: number;
   statut: 'en_cours' | 'terminee';

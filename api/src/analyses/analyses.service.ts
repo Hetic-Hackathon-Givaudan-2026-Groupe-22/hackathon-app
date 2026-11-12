@@ -5,7 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { asc, eq, inArray } from 'drizzle-orm';
+import { asc, desc, eq, inArray } from 'drizzle-orm';
 import { DRIZZLE, type Database } from '../database/database.module.js';
 import {
   analyses,
@@ -16,6 +16,7 @@ import {
 } from '../db/schema.js';
 import { ANALYSE_PROVIDER, type AnalyseProvider } from './analyse-provider.js';
 import { statutsAgents } from './agents.js';
+import { courbeSimulee } from './courbe.js';
 
 // Durée simulée d'une analyse ; ANALYSE_DUREE_MS=0 dans les tests
 export function dureeAnalyseMs(): number {
@@ -32,12 +33,28 @@ export class AnalysesService {
 
   // Lance l'analyse d'une tendance (US-14) : tout est produit et enregistré
   // tout de suite, puis révélé au fil du temps écoulé (ADR 0007)
-  async lancer(slug: string): Promise<{ id: number }> {
+  async lancer(
+    slug: string,
+    parametres: { periodeMois?: number; comparer?: string[] } = {},
+  ): Promise<{ id: number }> {
     const [tendance] = await this.db
       .select()
       .from(tendances)
       .where(eq(tendances.slug, slug));
     if (!tendance) throw new NotFoundException('Tendance introuvable');
+    const periodeMois = parametres.periodeMois ?? 24;
+    const comparaisons = [...new Set(parametres.comparer ?? [])].filter(
+      (c) => c !== slug,
+    );
+    if (comparaisons.length) {
+      const trouvees = await this.db
+        .select({ slug: tendances.slug })
+        .from(tendances)
+        .where(inArray(tendances.slug, comparaisons));
+      if (trouvees.length !== comparaisons.length) {
+        throw new NotFoundException('Tendance à comparer introuvable');
+      }
+    }
 
     const r = this.provider.analyser(tendance);
     return this.db.transaction(async (tx) => {
@@ -46,7 +63,9 @@ export class AnalysesService {
         .values({
           tendanceId: tendance.id,
           marche: r.marche,
-          periode: r.periode,
+          periode: `${periodeMois} derniers mois`,
+          periodeMois,
+          comparaisons,
           mode: r.mode,
           dureeMs: dureeAnalyseMs(),
           chaine: r.chaine,
@@ -100,6 +119,10 @@ export class AnalysesService {
         periode: analyse.periode,
       },
       demarreeLe: analyse.demarreeLe.toISOString(),
+      parametres: {
+        periodeMois: analyse.periodeMois,
+        comparaisons: analyse.comparaisons,
+      },
       dureeMs: analyse.dureeMs,
       ecouleMs: Math.min(ecouleMs, analyse.dureeMs),
       statut: terminee ? ('terminee' as const) : ('en_cours' as const),
@@ -218,5 +241,45 @@ export class AnalysesService {
       })
       .where(eq(verdicts.analyseId, id));
     return this.obtenir(id);
+  }
+
+  // US-22 : toutes les analyses d'une tendance, la plus récente d'abord ;
+  // rejouer en crée une nouvelle, l'ancienne n'est jamais écrasée
+  async historique(slug: string) {
+    const lignes = await this.db
+      .select({
+        id: analyses.id,
+        demarreeLe: analyses.demarreeLe,
+        periodeMois: analyses.periodeMois,
+        comparaisons: analyses.comparaisons,
+      })
+      .from(analyses)
+      .innerJoin(tendances, eq(analyses.tendanceId, tendances.id))
+      .where(eq(tendances.slug, slug))
+      .orderBy(desc(analyses.demarreeLe), desc(analyses.id));
+    return lignes.map((l) => ({
+      ...l,
+      demarreeLe: l.demarreeLe.toISOString(),
+    }));
+  }
+
+  // US-22 : la courbe simulée de la tendance et de ses comparaisons
+  async courbes(slugs: string[], mois: number) {
+    const lignes = await this.db
+      .select({
+        slug: tendances.slug,
+        nom: tendances.nom,
+        statut: tendances.statut,
+      })
+      .from(tendances)
+      .where(inArray(tendances.slug, slugs));
+    return slugs
+      .map((s) => lignes.find((l) => l.slug === s))
+      .filter((l) => l !== undefined)
+      .map((l) => ({
+        slug: l.slug,
+        nom: l.nom,
+        points: courbeSimulee(l.slug, l.statut, mois),
+      }));
   }
 }
