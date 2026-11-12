@@ -10,9 +10,27 @@ jobs:
     runs-on: ubuntu-latest
     # Même Node et même Debian que le dev container
     container: node:24-trixie
+    # La même base que compose.yaml, pour les tests fonctionnels
+    services:
+      db:
+        image: postgres:17
+        env:
+          POSTGRES_USER: app
+          POSTGRES_PASSWORD: app
+          POSTGRES_DB: app
+        options: >-
+          --health-cmd "pg_isready -U app -d app"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://app:app@db:5432/app
     steps:
       - uses: actions/checkout@v7
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
       - run: npm run build
+      - run: npm run db:migrate -w api
+      - run: npm run db:seed -w api
+      - run: npm test
