@@ -109,3 +109,25 @@ export const verdicts = pgTable('verdicts', {
   decidePar: text('decide_par'),
   decideLe: timestamp('decide_le', { withTimezone: true }),
 });
+
+// Comptes et sessions (ADR 0012)
+export const utilisateurs = pgTable('utilisateurs', {
+  id: serial('id').primaryKey(),
+  email: text('email').notNull().unique(),
+  nom: text('nom').notNull(),
+  // scrypt$<sel>$<empreinte>, jamais le mot de passe en clair
+  motDePasse: text('mot_de_passe').notNull(),
+  metier: text('metier'),
+  // fr | en (US-07)
+  langue: text('langue').notNull().default('fr'),
+  creeLe: timestamp('cree_le', { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const sessions = pgTable('sessions', {
+  // Empreinte SHA-256 du jeton : le jeton lui-même ne vit que dans le cookie
+  id: text('id').primaryKey(),
+  utilisateurId: integer('utilisateur_id')
+    .notNull()
+    .references(() => utilisateurs.id, { onDelete: 'cascade' }),
+  expireLe: timestamp('expire_le', { withTimezone: true }).notNull(),
+});

@@ -1,8 +1,8 @@
-import Link from 'next/link';
+import { Acces } from './acces';
 import { ApiStatus } from './api-status';
 import { Comete } from './logo';
 
-// Ouverture, reprise du prototype (sans connexion : US-03 est en P2)
+// Ouverture, reprise du prototype : accroche et accès au compte
 export default function Accueil() {
   return (
     <section className="intro-page" aria-label="Ouverture">
@@ -16,9 +16,7 @@ export default function Accueil() {
           Sillage repère les tendances, suit leur trace jusqu&apos;au prix des
           matières et aide Givaudan à décider avant les autres.
         </p>
-        <Link href="/tendances" className="btn">
-          Voir les tendances <span aria-hidden="true">›</span>
-        </Link>
+        <Acces />
         <p className="note">
           Démonstration : les analyses sont simulées par l&apos;API, le service
           Data n&apos;est pas encore branché.
