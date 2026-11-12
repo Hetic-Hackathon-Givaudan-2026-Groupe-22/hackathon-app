@@ -5,12 +5,14 @@ import type { Analyse, Message } from '@/lib/analyse';
 import { ChaineMatieres } from './chaine-matieres';
 import { DetailMessage } from './detail-message';
 import { TourDeTable } from './tour-de-table';
+import { VerdictAnalyse } from './verdict-analyse';
 
 type Onglet = 'tour' | 'chaine' | 'verdict';
 
 const ONGLETS: { id: Onglet; libelle: string }[] = [
   { id: 'tour', libelle: 'Tour de table' },
   { id: 'chaine', libelle: 'Lecture détaillée' },
+  { id: 'verdict', libelle: 'Verdict' },
 ];
 
 // Résultat d'une analyse terminée ; le tour de table s'ouvre en premier (US-15)
@@ -45,6 +47,8 @@ export function ResultatAnalyse({ analyse }: { analyse: Analyse }) {
       )}
 
       {onglet === 'chaine' && <ChaineMatieres analyse={analyse} />}
+
+      {onglet === 'verdict' && <VerdictAnalyse analyse={analyse} />}
 
       <DetailMessage
         messages={messages}
