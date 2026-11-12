@@ -1,30 +1,25 @@
 import type { Agent } from '@/lib/analyse';
 import { STATUT_AGENT } from '@/lib/agents';
 
-// US-15 : chaque agent avec son rôle et son statut
+// US-15 : chaque agent avec son rôle et son statut, en chaîne comme dans le prototype
 export function ListeAgents({ agents }: { agents: Agent[] }) {
   return (
-    <ul
-      className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3"
-      aria-label="Agents"
-    >
-      {agents.map((a) => (
-        <li
+    <div className="pipe" role="list" aria-label="Agents">
+      {agents.map((a, i) => (
+        <div
           key={a.nom}
-          className="flex items-start justify-between gap-3 rounded-box bg-base-100 p-3 shadow-sm"
+          role="listitem"
+          className={`st${a.statut === 'en_cours' ? ' on' : ''}${a.statut === 'termine' ? ' done' : ''}`}
         >
-          <div>
-            <p className="font-semibold">{a.nom}</p>
-            <p className="text-sm opacity-70">{a.role}</p>
-          </div>
-          <span className={`badge ${STATUT_AGENT[a.statut].badge} shrink-0`}>
-            {a.statut === 'en_cours' && (
-              <span className="loading loading-spinner loading-xs" />
-            )}
+          <b>
+            {i + 1} · {a.nom}
+          </b>
+          <span>{a.role}</span>
+          <em className={`stt ${STATUT_AGENT[a.statut].classe}`}>
             {STATUT_AGENT[a.statut].libelle}
-          </span>
-        </li>
+          </em>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }

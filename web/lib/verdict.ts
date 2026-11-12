@@ -7,11 +7,11 @@ export function libelleVerdict(v: 'buzz' | 'durable'): string {
 
 export const FIABILITE: Record<
   Verdict['fiabilite'],
-  { libelle: string; badge: string }
+  { libelle: string; chip: string }
 > = {
-  faible: { libelle: 'Fiabilité faible', badge: 'badge-error' },
-  moyenne: { libelle: 'Fiabilité moyenne', badge: 'badge-warning' },
-  elevee: { libelle: 'Fiabilité élevée', badge: 'badge-success' },
+  faible: { libelle: 'Fiabilité faible', chip: 'risk' },
+  moyenne: { libelle: 'Fiabilité moyenne', chip: 'wait' },
+  elevee: { libelle: 'Fiabilité élevée', chip: 'go' },
 };
 
 // Verdict retenu : celui de Camille s'il l'a modifié, sinon celui de Sillage

@@ -4,9 +4,21 @@ export const metadata = { title: 'Tendances · Sillage' };
 
 export default function PageTendances() {
   return (
-    <main className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 py-10">
-      <h1 className="text-2xl font-semibold">Tendances</h1>
+    <section className="view">
+      <div className="head">
+        <div>
+          <div className="eyebrow">
+            Veille en continu · données de démonstration
+          </div>
+          <h2 className="t">Les tendances du moment</h2>
+          <p className="lede">
+            Chaque tendance porte la couleur de sa famille d&apos;arômes. Celles
+            que vous suivez sont en tête. Cherchez une tendance, puis
+            analysez-la.
+          </p>
+        </div>
+      </div>
       <ListeTendances />
-    </main>
+    </section>
   );
 }

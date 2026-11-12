@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { apiGet, type Tendance } from '@/lib/api';
-import { formatMois, libelleStatut } from '@/lib/format';
+import { couleurFamille, statutTendance } from '@/lib/famille';
+import { formatMois } from '@/lib/format';
 import { BoutonLancerAnalyse } from './bouton-lancer-analyse';
 
 // US-13 : la fiche d'une tendance, pour juger si elle mérite une analyse
@@ -19,54 +20,65 @@ export function FicheTendance({ slug }: { slug: string }) {
 
   if (erreur)
     return (
-      <div className="flex flex-col gap-4">
-        <div className="alert alert-error">{erreur}</div>
-        <Link href="/tendances" className="link">
+      <div className="empty">
+        {erreur}
+        <Link href="/tendances" className="lnk">
           Retour aux tendances
         </Link>
       </div>
     );
-  if (!tendance) return <span className="loading loading-dots" />;
+  if (!tendance) return <p className="note">Chargement…</p>;
+
+  const statut = statutTendance(tendance.statut);
 
   return (
     <>
-      <div className="breadcrumbs text-sm">
-        <ul>
-          <li>
-            <Link href="/tendances">Tendances</Link>
-          </li>
-          <li>{tendance.nom}</li>
-        </ul>
+      <Link href="/tendances" className="lnk">
+        ‹ Toutes les tendances
+      </Link>
+      <div className="head" style={{ marginTop: 14 }}>
+        <div>
+          <div className="eyebrow">
+            Fiche tendance · observée depuis {formatMois(tendance.dateDebut)}
+          </div>
+          <h2
+            className="t"
+            style={{ display: 'flex', alignItems: 'center', gap: 12 }}
+          >
+            <i
+              className="dot"
+              style={{
+                width: 16,
+                height: 16,
+                background: `rgb(${couleurFamille(tendance.famille)})`,
+              }}
+            />
+            {tendance.nom}
+          </h2>
+          <div className="cl">
+            <span className="chip off">{tendance.famille}</span>
+            <span className={`chip ${statut.chip}`}>{statut.libelle}</span>
+            {tendance.suivie && <span className="chip go">Suivie</span>}
+          </div>
+          <p className="lede">{tendance.description}</p>
+        </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-3">
-        <h1 className="text-3xl font-semibold">{tendance.nom}</h1>
-        <span className="badge badge-outline">{tendance.famille}</span>
-        <span className="badge">{libelleStatut(tendance.statut)}</span>
+      <div className="eyebrow" style={{ marginTop: 22 }}>
+        Signaux clés
       </div>
-      <p className="text-sm opacity-70">
-        Observée depuis {formatMois(tendance.dateDebut)}
-      </p>
-      <p>{tendance.description}</p>
-
-      <section className="grid gap-3 sm:grid-cols-2">
+      <div className="sig">
         {tendance.signaux.map((s) => (
-          <div key={s.libelle} className="card bg-base-100 shadow-sm">
-            <div className="card-body p-4">
-              <p className="text-sm opacity-70">{s.libelle}</p>
-              <p className="text-xl font-semibold">{s.valeur}</p>
-              <p className="text-xs">
-                Source : {s.source}
-                {s.demo && (
-                  <span className="badge badge-warning badge-xs ml-2">
-                    Valeur de démonstration
-                  </span>
-                )}
-              </p>
-            </div>
+          <div key={s.libelle} className="card">
+            <span className="note">{s.libelle}</span>
+            <span className="val">{s.valeur}</span>
+            <span className="note">
+              Source : {s.source}{' '}
+              {s.demo && <span className="ph">Valeur de démonstration</span>}
+            </span>
           </div>
         ))}
-      </section>
+      </div>
 
       <BoutonLancerAnalyse slug={tendance.slug} />
     </>
