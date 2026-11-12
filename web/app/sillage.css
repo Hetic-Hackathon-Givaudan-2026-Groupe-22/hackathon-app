@@ -3632,3 +3632,11 @@ h4 {
 .intro-in h1 {
   font-weight: 800;
 }
+.famt[aria-checked='true'] {
+  border: 2px solid var(--ink);
+  padding: 6px 12px;
+}
+a.prof {
+  text-decoration: none;
+  color: inherit;
+}
