@@ -4,6 +4,7 @@ import { useState } from 'react';
 import type { Source } from '@/lib/analyse';
 
 // US-18 : les sources d'un message, vérifiées ou de démonstration
+// US-19 : chacune s'ouvre dans un nouvel onglet, sans quitter l'analyse
 export function ListeSources({ sources }: { sources: Source[] }) {
   const [visibles, setVisibles] = useState(false);
 
@@ -32,6 +33,7 @@ export function ListeSources({ sources }: { sources: Source[] }) {
               <p className="opacity-70">
                 {s.editeur} · {s.date}
               </p>
+              <LienSource source={s} />
               {s.verifiee ? (
                 <span className="badge badge-success badge-sm">
                   Source vérifiée
@@ -46,5 +48,38 @@ export function ListeSources({ sources }: { sources: Source[] }) {
         </ul>
       )}
     </div>
+  );
+}
+
+function LienSource({ source }: { source: Source }) {
+  const [indisponible, setIndisponible] = useState(false);
+
+  if (source.url)
+    return (
+      <a
+        href={source.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="link link-primary mr-2"
+      >
+        Ouvrir la source ↗
+      </a>
+    );
+
+  return (
+    <>
+      <button
+        className="link link-primary mr-2"
+        onClick={() => setIndisponible(true)}
+      >
+        Ouvrir la source
+      </button>
+      {indisponible && (
+        <p role="status" className="alert alert-warning my-2 text-sm">
+          Le lien de cette source n&apos;est plus disponible. Référence :{' '}
+          {source.titre}, {source.editeur}, {source.date}.
+        </p>
+      )}
+    </>
   );
 }

@@ -17,15 +17,30 @@ type Profil = {
   chaine?: Chaine;
 };
 
+// Page d'accueil publique de chaque éditeur cité (US-19) ; jamais d'article inventé
+export function lienEditeur(editeur: string, terme: string): string | null {
+  switch (editeur) {
+    case 'Google Trends':
+      return `https://trends.google.com/trends/explore?q=${encodeURIComponent(terme)}`;
+    case 'Mintel GNPD':
+      return 'https://www.mintel.com/';
+    case 'USDA':
+      return 'https://www.fas.usda.gov/';
+    default:
+      return null;
+  }
+}
+
 const demo = (
   titre: string,
   editeur: string,
   date: string,
+  url: string | null = null,
 ): SourceProduite => ({
   titre,
   editeur,
   date,
-  url: null,
+  url,
   verifiee: false,
 });
 
@@ -126,7 +141,14 @@ export class AnalyseSimulee implements AnalyseProvider {
     const [s1, s2, s3] = t.signaux;
     const src = (i: number) =>
       t.signaux[i]
-        ? [demo(t.signaux[i].libelle, t.signaux[i].source, '2025')]
+        ? [
+            demo(
+              t.signaux[i].libelle,
+              t.signaux[i].source,
+              '2025',
+              lienEditeur(t.signaux[i].source, t.nom),
+            ),
+          ]
         : [];
     const sourcePrix = t.slug === 'pistache' ? [PRIX_PISTACHE_FT] : src(3);
 
