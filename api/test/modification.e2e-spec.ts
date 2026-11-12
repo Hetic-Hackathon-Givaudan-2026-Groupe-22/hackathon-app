@@ -1,11 +1,12 @@
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { App } from 'supertest/types.js';
-import { demarrerApi } from './setup.js';
+import { connecter, demarrerApi } from './setup.js';
 
 // Test fonctionnel de la modification du verdict (US-26)
 describe('Modification du verdict (e2e)', () => {
   let app: INestApplication<App>;
+  let cookie: string[];
 
   const lancer = async (tendance: string) => {
     process.env.ANALYSE_DUREE_MS = '0';
@@ -17,6 +18,7 @@ describe('Modification du verdict (e2e)', () => {
 
   beforeAll(async () => {
     app = await demarrerApi();
+    cookie = await connecter(app);
   });
 
   afterAll(async () => {
@@ -28,6 +30,7 @@ describe('Modification du verdict (e2e)', () => {
     const id = await lancer('pistache');
     await request(app.getHttpServer())
       .post(`/api/analyses/${id}/verdict/modification`)
+      .set('Cookie', cookie)
       .send({ verdict: 'buzz', justification: '' })
       .expect(400);
     const relu = await request(app.getHttpServer()).get(`/api/analyses/${id}`);
@@ -38,6 +41,7 @@ describe('Modification du verdict (e2e)', () => {
     const id = await lancer('pistache');
     const { body } = await request(app.getHttpServer())
       .post(`/api/analyses/${id}/verdict/modification`)
+      .set('Cookie', cookie)
       .send({
         verdict: 'buzz',
         justification: 'Les commandes de nos clients baissent depuis un mois.',
@@ -48,7 +52,7 @@ describe('Modification du verdict (e2e)', () => {
       propose: 'durable',
       final: 'buzz',
       justification: 'Les commandes de nos clients baissent depuis un mois.',
-      decidePar: 'Camille (démo)',
+      decidePar: 'Camille Testeuse',
     });
   });
 
@@ -56,6 +60,7 @@ describe('Modification du verdict (e2e)', () => {
     const id = await lancer('pistache');
     await request(app.getHttpServer())
       .post(`/api/analyses/${id}/verdict/modification`)
+      .set('Cookie', cookie)
       .send({
         verdict: 'durable',
         justification: 'Je suis d’accord avec Sillage.',
@@ -67,9 +72,11 @@ describe('Modification du verdict (e2e)', () => {
     const id = await lancer('matcha');
     await request(app.getHttpServer())
       .post(`/api/analyses/${id}/verdict/validation`)
+      .set('Cookie', cookie)
       .expect(200);
     await request(app.getHttpServer())
       .post(`/api/analyses/${id}/verdict/modification`)
+      .set('Cookie', cookie)
       .send({ verdict: 'buzz', justification: 'Changement d’avis après coup.' })
       .expect(409);
   });

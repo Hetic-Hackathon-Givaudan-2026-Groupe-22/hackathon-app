@@ -1,10 +1,15 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { createHash, randomBytes } from 'node:crypto';
 import { and, eq, gt } from 'drizzle-orm';
 import { DRIZZLE, type Database } from '../database/database.module.js';
 import { sessions, utilisateurs } from '../db/schema.js';
 import { DUREE_SESSION_MS } from './cookie.js';
-import { hacher } from './mot-de-passe.js';
+import { hacher, verifier } from './mot-de-passe.js';
 
 export type UtilisateurPublic = {
   id: number;
@@ -13,6 +18,9 @@ export type UtilisateurPublic = {
   metier: string | null;
   langue: string;
 };
+
+// Empreinte factice : sans compte, on vérifie quand même, pour un temps de réponse égal
+let empreinteFactice: Promise<string> | undefined;
 
 const empreinte = (jeton: string) =>
   createHash('sha256').update(jeton).digest('hex');
@@ -91,5 +99,25 @@ export class AuthService {
   async fermerSession(jeton: string | undefined): Promise<void> {
     if (!jeton) return;
     await this.db.delete(sessions).where(eq(sessions.id, empreinte(jeton)));
+  }
+
+  // US-03 : un seul message, que l'e-mail ou le mot de passe soit faux
+  async authentifier(
+    email: string,
+    motDePasse: string,
+  ): Promise<UtilisateurPublic> {
+    const [u] = await this.db
+      .select()
+      .from(utilisateurs)
+      .where(eq(utilisateurs.email, email.toLowerCase()));
+    empreinteFactice ??= hacher('compte-inexistant');
+    const ok = await verifier(
+      motDePasse,
+      u?.motDePasse ?? (await empreinteFactice),
+    );
+    if (!u || !ok) {
+      throw new UnauthorizedException('E-mail ou mot de passe incorrect.');
+    }
+    return publier(u);
   }
 }

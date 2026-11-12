@@ -3,7 +3,8 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { sql } from 'drizzle-orm';
 import pg from 'pg';
-import { tendances } from '../src/db/schema.ts';
+import { tendances, utilisateurs } from '../src/db/schema.ts';
+import { hacher } from '../src/auth/mot-de-passe.ts';
 
 try {
   process.loadEnvFile();
@@ -17,6 +18,11 @@ const demo = (libelle: string, valeur: string, source: string) => ({
   source,
   demo: true,
 });
+
+export const COMPTE_DEMO = {
+  email: 'camille.martin@sillage.test',
+  motDePasse: 'sillage-demo-2026',
+};
 
 export const TENDANCES = [
   {
@@ -122,6 +128,18 @@ async function main() {
   await db.execute(sql`TRUNCATE tendances RESTART IDENTITY CASCADE`);
   await db.insert(tendances).values(TENDANCES);
   console.log(`${TENDANCES.length} tendances de démonstration insérées`);
+
+  // Compte de démonstration (ADR 0012) : valeurs de test, jamais un vrai compte
+  await db
+    .insert(utilisateurs)
+    .values({
+      nom: 'Camille Martin',
+      email: COMPTE_DEMO.email,
+      motDePasse: await hacher(COMPTE_DEMO.motDePasse),
+      metier: 'Consumer Insights',
+    })
+    .onConflictDoNothing({ target: utilisateurs.email });
+  console.log(`Compte de démonstration : ${COMPTE_DEMO.email}`);
   await pool.end();
 }
 

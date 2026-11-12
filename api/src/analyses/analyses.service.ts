@@ -17,11 +17,6 @@ import {
 import { ANALYSE_PROVIDER, type AnalyseProvider } from './analyse-provider.js';
 import { statutsAgents } from './agents.js';
 
-// Personne qui décide, tant que la connexion (US-03) n'existe pas : annoncée comme simulée
-export function utilisateurCourant(): string {
-  return process.env.DEMO_UTILISATEUR ?? 'Camille (démo)';
-}
-
 // Durée simulée d'une analyse ; ANALYSE_DUREE_MS=0 dans les tests
 export function dureeAnalyseMs(): number {
   const v = Number(process.env.ANALYSE_DUREE_MS);
@@ -186,13 +181,13 @@ export class AnalysesService {
   }
 
   // US-25 : Camille valide le verdict proposé ; il passe au statut « Validé », daté et signé
-  async valider(id: number) {
+  async valider(id: number, decidePar: string) {
     await this.verdictADecider(id);
     await this.db
       .update(verdicts)
       .set({
         statut: 'valide',
-        decidePar: utilisateurCourant(),
+        decidePar,
         decideLe: new Date(),
       })
       .where(eq(verdicts.analyseId, id));
@@ -204,6 +199,7 @@ export class AnalysesService {
   async modifier(
     id: number,
     choix: { verdict: 'buzz' | 'durable'; justification: string },
+    decidePar: string,
   ) {
     const propose = await this.verdictADecider(id);
     if (choix.verdict === propose.propose) {
@@ -217,7 +213,7 @@ export class AnalysesService {
         statut: 'modifie',
         final: choix.verdict,
         justification: choix.justification,
-        decidePar: utilisateurCourant(),
+        decidePar,
         decideLe: new Date(),
       })
       .where(eq(verdicts.analyseId, id));
