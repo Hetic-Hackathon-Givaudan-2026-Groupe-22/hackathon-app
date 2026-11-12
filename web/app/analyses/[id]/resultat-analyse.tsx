@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 import type { Analyse } from '@/lib/analyse';
+import { TourDeTable } from './tour-de-table';
 
 type Onglet = 'tour' | 'chaine' | 'verdict';
 
 // Résultat d'une analyse terminée ; le tour de table s'ouvre en premier (US-15)
 export function ResultatAnalyse({ analyse }: { analyse: Analyse }) {
   const [onglet, setOnglet] = useState<Onglet>('tour');
-  const messages = analyse.messages ?? [];
 
   return (
     <section className="flex flex-col gap-4">
@@ -23,18 +23,7 @@ export function ResultatAnalyse({ analyse }: { analyse: Analyse }) {
         </button>
       </div>
 
-      {onglet === 'tour' && (
-        <div className="flex flex-col gap-2" data-testid="tour-de-table">
-          {messages.map((m) => (
-            <div key={m.tour} className="rounded-box bg-base-100 p-3 shadow-sm">
-              <p className="text-sm font-semibold">
-                Tour {m.tour} · {m.agent}
-              </p>
-              <p>{m.contenu}</p>
-            </div>
-          ))}
-        </div>
-      )}
+      {onglet === 'tour' && <TourDeTable messages={analyse.messages ?? []} />}
     </section>
   );
 }

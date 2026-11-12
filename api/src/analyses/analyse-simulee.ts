@@ -136,7 +136,7 @@ export class AnalyseSimulee implements AnalyseProvider {
         agent: 'Veilleur',
         repondA: null,
         relation: null,
-        contenu: `${t.nom} : ${s1?.libelle.toLowerCase()} ${s1?.valeur}. Le signal est net.`,
+        contenu: `${s1?.libelle} : ${s1?.valeur}. Pour ${t.nom}, le signal est net.`,
         statut: 'etabli',
         position: borne(p.score + 15),
         sources: src(0),
@@ -161,7 +161,7 @@ export class AnalyseSimulee implements AnalyseProvider {
         relation: 'nuance',
         contenu: buzz
           ? `Le profil de ${t.nom} rappelle les buzz passés : montée en quelques semaines, retombée en quelques mois.`
-          : `Contrairement au Dalgona en 2020, ${t.nom} progresse depuis plusieurs saisons : ${s2?.libelle.toLowerCase()} ${s2?.valeur}.`,
+          : `Contrairement au Dalgona en 2020, ${t.nom} progresse depuis plusieurs saisons (${s2?.libelle} : ${s2?.valeur}).`,
         statut: 'etabli',
         position: borne(p.score - 5),
         sources: src(1),
@@ -174,7 +174,7 @@ export class AnalyseSimulee implements AnalyseProvider {
         contenu:
           t.slug === 'pistache'
             ? 'Le prix de la pistache est passé de 7,65 $ à 10,30 $ la livre en un an : la demande dépasse l’offre.'
-            : `Côté matières : ${s3?.libelle.toLowerCase() ?? 'peu de données'} ${s3?.valeur ?? ''}.`.trim(),
+            : `Côté matières : ${s3 ? `${s3.libelle} : ${s3.valeur}` : 'peu de données'}.`,
         statut: 'etabli',
         position: borne(p.score + 5),
         sources: sourcePrix,
