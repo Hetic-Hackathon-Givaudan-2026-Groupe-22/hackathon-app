@@ -1,8 +1,11 @@
 import { Test } from '@nestjs/testing';
-import { TendancesController } from './tendances.controller.js';
-import { TendancesService } from './tendances.service.js';
+import {
+  rechercheSchema,
+  TendancesController,
+} from './tendances.controller.js';
+import { motifRecherche, TendancesService } from './tendances.service.js';
 
-// Test unitaire : le contrôleur délègue au service, sans base
+// Tests unitaires : le contrôleur délègue au service, sans base
 describe('TendancesController', () => {
   const service = { lister: vi.fn() };
   let controller: TendancesController;
@@ -18,6 +21,37 @@ describe('TendancesController', () => {
 
   it('renvoie la liste du service', async () => {
     service.lister.mockResolvedValue([{ slug: 'pistache' }]);
-    await expect(controller.lister()).resolves.toEqual([{ slug: 'pistache' }]);
+    await expect(controller.lister({})).resolves.toEqual([
+      { slug: 'pistache' },
+    ]);
+  });
+
+  it('transmet le mot-clé, et ignore un mot-clé vide', async () => {
+    service.lister.mockResolvedValue([]);
+    await controller.lister({ q: 'pist' });
+    await controller.lister({ q: '' });
+    expect(service.lister.mock.calls).toEqual([['pist'], [undefined]]);
+  });
+});
+
+describe('rechercheSchema (US-10)', () => {
+  it('retire les espaces autour du mot-clé', () => {
+    expect(rechercheSchema.parse({ q: '  matcha ' })).toEqual({ q: 'matcha' });
+  });
+
+  it('refuse un mot-clé de plus de 60 caractères', () => {
+    expect(rechercheSchema.safeParse({ q: 'x'.repeat(61) }).success).toBe(
+      false,
+    );
+  });
+});
+
+describe('motifRecherche (US-10)', () => {
+  it('cherche le mot-clé n’importe où', () => {
+    expect(motifRecherche('pist')).toBe('%pist%');
+  });
+
+  it('échappe les jokers SQL', () => {
+    expect(motifRecherche('50%_')).toBe('%50\\%\\_%');
   });
 });

@@ -37,4 +37,31 @@ describe('Tendances (e2e)', () => {
     expect(suivies.slice(premiereNonSuivie)).not.toContain(true);
     expect(suivies[0]).toBe(true);
   });
+
+  it('US-10 : filtre par mot-clé, sans tenir compte des majuscules', async () => {
+    const res = await request(app.getHttpServer())
+      .get('/api/tendances?q=PIST')
+      .expect(200);
+    expect(res.body.map((t: { slug: string }) => t.slug)).toEqual(['pistache']);
+  });
+
+  it('US-10 : cherche aussi dans la famille', async () => {
+    const res = await request(app.getHttpServer()).get(
+      '/api/tendances?q=agrume',
+    );
+    expect(res.body.map((t: { slug: string }) => t.slug)).toEqual(['yuzu']);
+  });
+
+  it('US-10 : aucune tendance ne correspond, liste vide', async () => {
+    const res = await request(app.getHttpServer())
+      .get('/api/tendances?q=introuvable')
+      .expect(200);
+    expect(res.body).toEqual([]);
+  });
+
+  it('US-10 : un mot-clé trop long est refusé (Zod)', async () => {
+    await request(app.getHttpServer())
+      .get(`/api/tendances?q=${'x'.repeat(61)}`)
+      .expect(400);
+  });
 });
