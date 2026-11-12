@@ -2,6 +2,8 @@
   "name": "Hackathon",
   "dockerComposeFile": ["../compose.yaml"],
   "service": "dev",
+  // Seuls le poste et la base démarrent avec VS Code ; docker compose up lance tout (ADR 0010)
+  "runServices": ["dev", "db"],
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
   "remoteUser": "node",

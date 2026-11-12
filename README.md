@@ -1,77 +1,73 @@
-# Hackathon Givaudan 2026 – Kuami
+# Sillage · Hackathon Givaudan 2026, groupe 22
 
-Une API Express et un front Vite en TypeScript, avec une base PostgreSQL et un appel à une IA compatible OpenAI. Tout tourne dans un dev container.
+Sillage aide une analyste Consumer Insights à distinguer un buzz passager d'une tendance durable. Cinq agents confrontent les preuves (recherches, lancements, prix des matières) ; Sillage propose un verdict sourcé, que l'analyste valide ou corrige.
 
-## Stack
+> **Démonstration** : le service Data (modèle d'IA, `ia/openapi.yaml`) n'est pas encore branché. L'analyse est simulée par l'API (ADR 0005) et chaque écran le signale. Seul le prix de la pistache (Financial Times, 19/04/2025) est une donnée réelle.
 
-| Partie | Techno                                                | Dossier    |
-| ------ | ----------------------------------------------------- | ---------- |
-| API    | Node 24, Express 5, `pg`, TypeScript, tsx             | `api/`     |
-| Front  | Vite (TypeScript)                                     | `web/`     |
-| Base   | PostgreSQL 17                                         | `db/`      |
-| IA     | Tout fournisseur compatible OpenAI (Ollama, Mistral…) | `api/.env` |
+## Lancer la démo
 
-Le dépôt est un monorepo npm (workspaces `api` et `web`).
+Prérequis : Docker.
 
-## Démarrer
+```bash
+docker compose up
+```
+
+- Front : http://localhost:5173
+- API : http://localhost:3000/api/health
+
+Au démarrage, l'API joue les migrations et les données de démonstration (6 tendances). Parcours : Tendances → Pistache → **Lancer l'analyse** → tour de table, lecture détaillée, verdict → **Valider** ou **Modifier**.
+
+Les ports se changent avec `API_PORT` et `WEB_PORT` (par exemple `WEB_PORT=8080 docker compose up`).
+
+## Développer
 
 Prérequis : Docker et VS Code avec l'extension **Dev Containers**.
 
-1. Cloner le dépôt et l'ouvrir dans VS Code.
-2. **Dev Containers: Reopen in Container**.
-
-À la création, le conteneur lance `npm ci` et copie `api/.env.example` vers `api/.env`. PostgreSQL démarre en même temps et joue les scripts de `db/init/` au premier lancement.
-
-3. Lancer l'API et le front :
+1. Cloner le dépôt et l'ouvrir dans VS Code, puis **Dev Containers: Reopen in Container**. Le conteneur lance `npm ci` et crée `api/.env`.
+2. Dans le terminal du conteneur :
 
 ```bash
+npm run db:migrate -w api
+npm run db:seed -w api
 npm run dev
 ```
 
-- Front : http://localhost:5173 (les appels à `/api` passent par le proxy vers l'API)
-- API : http://localhost:3000
-- PostgreSQL : `localhost:5432`, utilisateur, mot de passe et base `app`
+## Stack
 
-## Configuration de l'IA
+| Partie | Techno                                    | Dossier        |
+| ------ | ----------------------------------------- | -------------- |
+| API    | NestJS 12, Drizzle ORM, Zod, TypeScript   | `api/`         |
+| Front  | Next.js 16, Tailwind CSS, daisyUI         | `web/`         |
+| Base   | PostgreSQL 17, migrations Drizzle         | `api/drizzle/` |
+| Data   | Service Sillage (Python), contrat OpenAPI | `ia/`          |
 
-Dans `api/.env`, décommentez l'une des options :
-
-- **Ollama sur votre machine** (par défaut) : `AI_BASE_URL=http://host.docker.internal:11434/v1`, modèle `llama3.2:1b`. Pensez à faire `ollama pull llama3.2:1b`.
-- **Fournisseur commercial** (par exemple Mistral) : renseignez `AI_BASE_URL`, `AI_MODEL` et `AI_API_KEY`.
-
-Le fichier `.env` n'est jamais commité.
-
-> L'option « Ollama en conteneur » de `.env.example` suppose un service `ollama` qui n'existe pas encore dans `compose.yaml`.
+Les choix sont expliqués dans `docs/adr/`.
 
 ## API
 
-| Méthode | Route            | Description                                                                      |
-| ------- | ---------------- | -------------------------------------------------------------------------------- |
-| GET     | `/api/health`    | Statut de l'API et version de PostgreSQL                                         |
-| GET     | `/api/questions` | Les 10 dernières questions et leurs réponses                                     |
-| POST    | `/api/questions` | Corps `{ "question": "..." }` : interroge l'IA, enregistre et renvoie la réponse |
-
-## Base de données
-
-- `db/init/001-schema.sql` : schéma (table `questions`)
-- `db/init/002-seed.sql` : données de test
-
-Les données sont stockées dans `db/data/` (ignoré par git). Ces scripts ne sont joués qu'au premier démarrage : pour repartir de zéro, arrêtez les conteneurs et supprimez `db/data/`.
+| Méthode | Route                                    | Story         |
+| ------- | ---------------------------------------- | ------------- |
+| GET     | `/api/tendances?q=`                      | US-09, US-10  |
+| GET     | `/api/tendances/:slug`                   | US-13         |
+| POST    | `/api/analyses` `{ tendance }`           | US-14         |
+| GET     | `/api/analyses/:id`                      | US-15 à US-24 |
+| POST    | `/api/analyses/:id/verdict/validation`   | US-25         |
+| POST    | `/api/analyses/:id/verdict/modification` | US-26         |
 
 ## Scripts
 
-| Commande               | Effet                                    |
-| ---------------------- | ---------------------------------------- |
-| `npm run dev`          | Lance l'API et le front en parallèle     |
-| `npm run build`        | Compile l'API (`tsc`) et le front (Vite) |
-| `npm run lint`         | ESLint                                   |
-| `npm run format`       | Formate le code avec Prettier            |
-| `npm run format:check` | Vérifie le formatage                     |
+| Commande                    | Effet                                                     |
+| --------------------------- | --------------------------------------------------------- |
+| `npm run dev`               | API (port 3000) et front (port 5173)                      |
+| `npm test`                  | Tests unitaires (API, front) et fonctionnels (API + base) |
+| `npm run lint`              | ESLint                                                    |
+| `npm run format:check`      | Vérifie le formatage Prettier                             |
+| `npm run build`             | Compile l'API et le front                                 |
+| `npm run db:migrate -w api` | Applique les migrations                                   |
+| `npm run db:seed -w api`    | Réinsère les données de démonstration                     |
 
-## Qualité et contribution
+## Contribuer
 
-- **Pre-commit** : Husky lance `lint-staged` (ESLint + Prettier sur les fichiers modifiés).
-- **CI** (GitHub Actions) : sur chaque PR et chaque push sur `main` et `develop`, lint, vérification du formatage et build, avec la même image Node que le dev container.
-- **Branches** : on part de `develop` avec une branche `feature/...` et on ouvre une PR vers `develop`. Remplissez le modèle de PR.
-- **CODEOWNERS** : les tech leads relisent les changements sur `.devcontainer/`, `.github/`, `compose.yaml`, `eslint.config.mjs` et `package.json`.
-- Le code produit avec une IA doit être relu et compris avant d'être proposé.
+- Un ticket par travail, une branche `feature/…` depuis `develop`, une pull request vers `develop` avec `Closes #N`, fusionnée en **Squash and merge**.
+- La CI (`qualite`) joue lint, formatage, build, migrations et tests sur PostgreSQL 17.
+- Husky lance `lint-staged` avant chaque commit.

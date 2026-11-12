@@ -4,25 +4,24 @@ Sillage, détecteur de tendances (Givaudan AI Innovation Challenge, thème 3), �
 
 ## Lancer
 
-Toutes les commandes se lancent dans le dev container.
-
-- `npm run dev` : API sur le port 3000, front sur le port 5173.
+- Démo complète : `docker compose up` (base, API sur le port 3000, front sur le port 5173), ADR 0010.
+- Dans le dev container : `npm run db:migrate -w api`, `npm run db:seed -w api`, puis `npm run dev`.
 - `curl -s localhost:3000/api/health` doit répondre `"status":"ok"`.
-- Le service Data Sillage tourne sur le port 8000 ; sa santé : `GET /sillage/health`.
-- Avant de dire « fini » : `npm run lint`, `npm run format:check`, `npm run build`. Ce sont les contrôles du job `qualite` (`.github/workflows/ci.yml`).
+- Avant de dire « fini » : `npm run lint`, `npm run format:check`, `npm run build`, `npm test`. Ce sont les contrôles du job `qualite` (`.github/workflows/ci.yml`).
 
 ## Règles
 
-- Le contrat du service Data est `ia/openapi.yaml`. Code contre lui, n'invente pas de route : le score passe par `POST /sillage/score`.
-- Le service répond en mode `dummy` (réponses factices, exemples `pistache`, `dalgona`, `matcha`). Le passage à `reel` ne doit pas changer le code de l'API.
-- L'API est encore en Express (`api/src/index.ts`) et passe à NestJS (ADR 0001) : n'ajoute pas de route Express.
-- Le schéma et les données de test sont dans `db/init/`, joués au premier démarrage seulement : un changement de schéma oblige à vider `db/data/`.
-- La configuration est dans `api/.env`, créé depuis `api/.env.example` à la création du conteneur.
+- API NestJS dans `api/src/` : un module par domaine (`tendances/`, `analyses/`), préfixe `/api` posé par `configure-app.ts`.
+- Schéma dans `api/src/db/schema.ts` ; après une modification, `npm run db:generate -w api` crée la migration dans `api/drizzle/` (ADR 0006). `db/init/` ne crée que la base vide.
+- Toute entrée de l'API est validée par un schéma Zod, `@Body({ schema })` ou `@Param(..., { schema })` (ADR 0008).
+- L'analyse vient de l'interface `AnalyseProvider` ; aujourd'hui `AnalyseSimulee` (`mode: "dummy"`, ADR 0005). Le service Data se branchera là, contre `ia/openapi.yaml`, sans toucher au front.
+- Front Next.js dans `web/app/`, composants daisyUI (ADR 0009) ; la logique testable va dans `web/lib/` avec son `*.spec.ts`.
+- Le front n'appelle que `/api/…` (`web/lib/api.ts`) ; Next.js relaie vers `API_URL`.
 - Une branche `feature/…` par ticket, depuis `develop`. La pull request vise `develop`, suit `.github/pull_request_template.md` et contient `Closes #N`.
 
 ## Décisions
 
-- Lis `docs/adr/` avant d'ajouter une dépendance ou de changer de composant : dev container (0000), NestJS et Next.js (0001), PostgreSQL 17 (0002), service Data Sillage (0003).
+- Lis `docs/adr/` avant d'ajouter une dépendance ou de changer de composant : dev container (0000), NestJS et Next.js (0001), PostgreSQL 17 (0002), service Data Sillage (0003), analyse simulée (0005), Drizzle (0006), suivi par interrogation (0007), Zod (0008), daisyUI (0009), docker compose (0010).
 - Ne contredis pas un ADR au statut « acceptée ».
 - S'il faut en changer, propose un nouvel ADR, puis arrête-toi.
 

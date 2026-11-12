@@ -4,6 +4,8 @@ import type { NextConfig } from 'next';
 const apiUrl = process.env.API_URL ?? 'http://localhost:3000';
 
 const nextConfig: NextConfig = {
+  // docker compose construit dans son propre dossier : il ne gêne pas next dev (ADR 0010)
+  distDir: process.env.NEXT_DIST_DIR ?? '.next',
   turbopack: {
     rules: {
       '*.css': {
