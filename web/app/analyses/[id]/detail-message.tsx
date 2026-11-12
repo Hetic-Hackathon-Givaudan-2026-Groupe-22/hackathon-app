@@ -4,7 +4,8 @@ import type { Message } from '@/lib/analyse';
 import { argumentCite, STATUT_MESSAGE } from '@/lib/message';
 import { ListeSources } from './liste-sources';
 
-// US-17 : le message complet d'un agent, son statut et l'argument auquel il répond
+// US-17 : le message complet d'un agent, son statut et l'argument auquel il répond,
+// dans le tiroir latéral du prototype
 export function DetailMessage({
   messages,
   message,
@@ -19,45 +20,43 @@ export function DetailMessage({
   const statut = STATUT_MESSAGE[message.statut];
 
   return (
-    <dialog
-      open
-      className="modal modal-bottom sm:modal-middle"
-      aria-labelledby="titre-message"
-      onClose={onFermer}
-    >
-      <div className="modal-box flex flex-col gap-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <h2 id="titre-message" className="text-lg font-semibold">
+    <>
+      <button
+        className="drawer-bg"
+        aria-label="Fermer le message"
+        onClick={onFermer}
+      />
+      <aside
+        className="drawer on"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titre-message"
+        onKeyDown={(e) => e.key === 'Escape' && onFermer()}
+      >
+        <button className="x" onClick={onFermer} autoFocus>
+          Fermer
+        </button>
+        <div className="eyebrow">Tour {message.tour}</div>
+        <div className="sx-h">
+          <h3 id="titre-message" style={{ fontSize: 20 }}>
             {message.agent}
-          </h2>
-          <span className="text-sm opacity-70">tour {message.tour}</span>
-          <span className={`badge ${statut.badge}`}>{statut.libelle}</span>
+          </h3>
+          <span className={`chip ${statut.chip}`}>{statut.libelle}</span>
         </div>
 
         {cite && (
-          <blockquote className="border-l-4 border-base-300 pl-3 text-sm opacity-80">
-            <p className="font-semibold">
-              En réponse à {cite.agent} (tour {cite.tour}) :
-            </p>
-            <p>« {cite.contenu} »</p>
-          </blockquote>
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 6 }}>
+              En réponse à {cite.agent} (tour {cite.tour})
+            </div>
+            <blockquote className="sx-q">« {cite.contenu} »</blockquote>
+          </div>
         )}
 
-        <p>{message.contenu}</p>
+        <p style={{ margin: 0 }}>{message.contenu}</p>
 
         <ListeSources key={message.tour} sources={message.sources} />
-
-        <div className="modal-action">
-          <button className="btn" onClick={onFermer} autoFocus>
-            Fermer
-          </button>
-        </div>
-      </div>
-      <button
-        className="modal-backdrop"
-        aria-label="Fermer"
-        onClick={onFermer}
-      />
-    </dialog>
+      </aside>
+    </>
   );
 }

@@ -8,8 +8,13 @@ import { libelleVerdict, verdictRetenu } from '@/lib/verdict';
 
 const JUSTIFICATION_MIN = 10;
 
+const DESCRIPTION = {
+  durable: 'Lancer un projet et prévenir les achats',
+  buzz: 'Classer comme buzz passager',
+};
+
 // US-25 : Camille valide le verdict ; il devient officiel, daté et signé
-// US-26 : ou elle le modifie, justification obligatoire
+// US-26 : ou elle choisit l'autre verdict, justification obligatoire
 export function DecisionVerdict({
   analyse,
   onMaj,
@@ -17,13 +22,15 @@ export function DecisionVerdict({
   analyse: Analyse;
   onMaj: (a: Analyse) => void;
 }) {
+  const v = analyse.verdict;
+  const [choix, setChoix] = useState<'buzz' | 'durable'>(
+    v?.propose ?? 'durable',
+  );
   const [envoi, setEnvoi] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
-  const [edition, setEdition] = useState(false);
   const [justification, setJustification] = useState('');
-  const v = analyse.verdict;
   if (!v) return null;
-  const autre = v.propose === 'buzz' ? 'durable' : 'buzz';
+  const change = choix !== v.propose;
 
   async function envoyer(chemin: string, corps?: unknown) {
     setEnvoi(true);
@@ -44,113 +51,113 @@ export function DecisionVerdict({
 
   if (v.statut === 'propose')
     return (
-      <section className="flex flex-col gap-3" aria-label="Décision">
-        {!edition && (
-          <div className="flex flex-wrap gap-2">
+      <section aria-label="Décision" style={{ marginTop: 20 }}>
+        <div className="eyebrow">Votre décision</div>
+        <div className="opts two" role="group" aria-label="Choisir le verdict">
+          {(['durable', 'buzz'] as const).map((o) => (
             <button
-              className="btn btn-primary"
-              onClick={() => envoyer('validation')}
-              disabled={envoi}
+              key={o}
+              className="opt"
+              aria-pressed={choix === o}
+              onClick={() => setChoix(o)}
             >
-              {envoi && <span className="loading loading-spinner loading-sm" />}
-              Valider le verdict
+              <div className="h">
+                <b>{libelleVerdict(o)}</b>
+                {o === v.propose && (
+                  <span className="chip go">Proposé par le Stratège</span>
+                )}
+              </div>
+              <span className="d">{DESCRIPTION[o]}</span>
             </button>
-            <button className="btn" onClick={() => setEdition(true)}>
-              Modifier le verdict
-            </button>
+          ))}
+        </div>
+
+        {change && (
+          <div style={{ marginTop: 14 }}>
+            <label htmlFor="why" className="eyebrow">
+              Pourquoi changez-vous le verdict ? (obligatoire)
+            </label>
+            <textarea
+              id="why"
+              rows={3}
+              required
+              minLength={JUSTIFICATION_MIN}
+              maxLength={500}
+              value={justification}
+              onChange={(e) => setJustification(e.target.value)}
+              placeholder="Pourquoi votre expertise contredit-elle l'analyse ?"
+            />
           </div>
         )}
 
-        {edition && (
-          <form
-            className="card bg-base-100 shadow-sm"
-            onSubmit={(e) => {
-              e.preventDefault();
-              envoyer('modification', { verdict: autre, justification });
-            }}
-          >
-            <div className="card-body gap-3">
-              <h2 className="card-title">
-                Remplacer « {libelleVerdict(v.propose)} » par «{' '}
-                {libelleVerdict(autre)} »
-              </h2>
-              <label className="flex flex-col gap-1">
-                <span>Justification (obligatoire)</span>
-                <textarea
-                  className="textarea w-full"
-                  required
-                  minLength={JUSTIFICATION_MIN}
-                  maxLength={500}
-                  value={justification}
-                  onChange={(e) => setJustification(e.target.value)}
-                  placeholder="Pourquoi votre expertise contredit-elle l'analyse ?"
-                />
-              </label>
-              <div className="flex flex-wrap gap-2">
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  disabled={
-                    envoi || justification.trim().length < JUSTIFICATION_MIN
-                  }
-                >
-                  Enregistrer ma décision
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-ghost"
-                  onClick={() => setEdition(false)}
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
-          </form>
+        <div className="foot">
+          {change ? (
+            <button
+              className="btn"
+              onClick={() =>
+                envoyer('modification', { verdict: choix, justification })
+              }
+              disabled={
+                envoi || justification.trim().length < JUSTIFICATION_MIN
+              }
+            >
+              Enregistrer ma décision : {libelleVerdict(choix)}
+            </button>
+          ) : (
+            <button
+              className="btn"
+              onClick={() => envoyer('validation')}
+              disabled={envoi}
+            >
+              Valider le verdict : {libelleVerdict(v.propose)}
+            </button>
+          )}
+        </div>
+        {erreur && (
+          <p className="hint" role="alert">
+            {erreur}
+          </p>
         )}
-
-        {erreur && <div className="alert alert-error">{erreur}</div>}
       </section>
     );
 
   return (
-    <section className="flex flex-col gap-3" aria-label="Décision">
-      <div role="status" className="alert alert-success">
-        <span>
-          <strong>
-            {v.statut === 'valide' ? 'Validé' : 'Modifié'} :{' '}
-            {libelleVerdict(verdictRetenu(v))}
-          </strong>{' '}
+    <section
+      aria-label="Décision"
+      style={{ marginTop: 20, display: 'grid', gap: 14 }}
+    >
+      <div role="status" className="decision" style={{ marginTop: 0 }}>
+        <span className="chip go">
+          {v.statut === 'valide' ? 'Validé' : 'Modifié'}
+        </span>
+        <b>{libelleVerdict(verdictRetenu(v))}</b>
+        <span className="note">
           le {v.decideLe ? formatDateHeure(v.decideLe) : '?'} par {v.decidePar}
         </span>
       </div>
 
       {v.statut === 'modifie' && (
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-box bg-base-100 p-4 shadow-sm">
-            <p className="text-sm opacity-70">Proposé par Sillage</p>
-            <p className="text-2xl font-semibold">
-              {libelleVerdict(v.propose)}
-            </p>
-            <p className="text-sm">Score {v.score}/100</p>
+        <div className="side">
+          <div className="card">
+            <span className="note">Proposé par Sillage</span>
+            <span className="score">{libelleVerdict(v.propose)}</span>
+            <span className="note">Score {v.score}/100</span>
           </div>
-          <div className="rounded-box bg-base-100 p-4 shadow-sm ring-2 ring-primary">
-            <p className="text-sm opacity-70">Décision de {v.decidePar}</p>
-            <p className="text-2xl font-semibold">
-              {libelleVerdict(verdictRetenu(v))}
-            </p>
-            <p className="text-sm">« {v.justification} »</p>
+          <div className="card mine">
+            <span className="note">Décision de {v.decidePar}</span>
+            <span className="score">{libelleVerdict(verdictRetenu(v))}</span>
+            <span>« {v.justification} »</span>
           </div>
         </div>
       )}
 
-      <div className="card bg-base-100 shadow-sm">
-        <div className="card-body">
-          <h2 className="card-title">Plan d&apos;action</h2>
-          <p className="text-sm opacity-70">
-            Le verdict est officiel : le plan d&apos;action de la tendance est
-            accessible. Son contenu arrive avec US-27.
-          </p>
-        </div>
+      <div className="card">
+        <div className="eyebrow">Après la décision</div>
+        <h3>Plan d&apos;action</h3>
+        <p className="note" style={{ margin: 0 }}>
+          Le verdict est officiel : le plan d&apos;action de la tendance est
+          accessible. Son contenu arrive avec US-27.
+        </p>
       </div>
     </section>
   );

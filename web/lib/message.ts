@@ -1,13 +1,13 @@
 import type { Message } from './analyse';
 
-// Statut d'une prise de parole (US-17)
+// Statut d'une prise de parole (US-17), en pastille du prototype
 export const STATUT_MESSAGE: Record<
   Message['statut'],
-  { libelle: string; badge: string }
+  { libelle: string; chip: string }
 > = {
-  etabli: { libelle: 'Établi', badge: 'badge-success' },
-  conteste: { libelle: 'Contesté', badge: 'badge-error' },
-  ouvert: { libelle: 'Ouvert', badge: 'badge-warning' },
+  etabli: { libelle: 'Établi', chip: 'go' },
+  conteste: { libelle: 'Contesté', chip: 'risk' },
+  ouvert: { libelle: 'Ouvert', chip: 'wait' },
 };
 
 // Argument auquel le message répond, cité dans le détail (US-17)

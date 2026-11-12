@@ -1,6 +1,6 @@
 # 0009. Construire l'interface avec daisyUI sur Tailwind CSS
 
-- Statut : acceptée
+- Statut : remplacée par [0011](0011-design-prototype-sillage.md)
 - Date : 2026-11-12
 - Décideurs : Kuami (tech-lead)
 

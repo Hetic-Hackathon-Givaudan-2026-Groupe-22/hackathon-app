@@ -13,7 +13,7 @@ type Onglet = 'tour' | 'chaine' | 'verdict';
 
 const ONGLETS: { id: Onglet; libelle: string }[] = [
   { id: 'tour', libelle: 'Tour de table' },
-  { id: 'chaine', libelle: 'Lecture détaillée' },
+  { id: 'chaine', libelle: 'Notes et prix' },
   { id: 'verdict', libelle: 'Verdict' },
 ];
 
@@ -30,14 +30,12 @@ export function ResultatAnalyse({
   const messages = analyse.messages ?? [];
 
   return (
-    <section className="flex flex-col gap-4">
-      <div role="tablist" className="tabs tabs-box w-fit">
+    <section style={{ marginTop: 22 }}>
+      <div className="seg" role="group" aria-label="Résultat de l'analyse">
         {ONGLETS.map((o) => (
           <button
             key={o.id}
-            role="tab"
-            className={`tab ${onglet === o.id ? 'tab-active' : ''}`}
-            aria-selected={onglet === o.id}
+            aria-pressed={onglet === o.id}
             onClick={() => setOnglet(o.id)}
           >
             {o.libelle}
@@ -46,22 +44,19 @@ export function ResultatAnalyse({
       </div>
 
       {onglet === 'tour' && (
-        <>
-          <p className="text-sm opacity-70">
-            Cliquez sur une prise de parole pour lire le message complet.
-          </p>
-          <TourDeTable messages={messages} onOuvrir={setOuvert} />
-        </>
+        <TourDeTable messages={messages} onOuvrir={setOuvert} />
       )}
 
       {onglet === 'chaine' && <ChaineMatieres analyse={analyse} />}
 
       {onglet === 'verdict' && (
-        <>
-          <VerdictAnalyse analyse={analyse} />
-          <RaisonsVerdict analyse={analyse} onOuvrir={setOuvert} />
+        <div className="narrow" style={{ marginTop: 18 }}>
+          <VerdictAnalyse
+            analyse={analyse}
+            raisons={<RaisonsVerdict analyse={analyse} onOuvrir={setOuvert} />}
+          />
           <DecisionVerdict analyse={analyse} onMaj={onMaj} />
-        </>
+        </div>
       )}
 
       <DetailMessage

@@ -25,14 +25,16 @@ export function BoutonLancerAnalyse({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="flex flex-col gap-2">
-      <div>
-        <button className="btn btn-primary" onClick={lancer} disabled={envoi}>
-          {envoi && <span className="loading loading-spinner loading-sm" />}
-          Lancer l&apos;analyse
-        </button>
-      </div>
-      {erreur && <div className="alert alert-error">{erreur}</div>}
+    <div className="foot" style={{ justifyContent: 'flex-start' }}>
+      <button className="btn" onClick={lancer} disabled={envoi}>
+        {envoi ? 'Lancement…' : 'Lancer l’analyse'}{' '}
+        <span aria-hidden="true">›</span>
+      </button>
+      {erreur && (
+        <p className="hint" role="alert">
+          {erreur}
+        </p>
+      )}
     </div>
   );
 }

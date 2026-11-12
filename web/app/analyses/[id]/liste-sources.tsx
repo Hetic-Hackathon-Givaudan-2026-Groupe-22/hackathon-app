@@ -10,14 +10,16 @@ export function ListeSources({ sources }: { sources: Source[] }) {
 
   if (sources.length === 0)
     return (
-      <p className="badge badge-warning badge-outline">Source à compléter</p>
+      <p>
+        <span className="chip wait">Source à compléter</span>
+      </p>
     );
 
   return (
-    <div className="flex flex-col gap-2">
+    <div style={{ display: 'grid', gap: 10 }}>
       <div>
         <button
-          className="btn btn-sm btn-outline"
+          className="src"
           aria-expanded={visibles}
           onClick={() => setVisibles(!visibles)}
         >
@@ -26,23 +28,10 @@ export function ListeSources({ sources }: { sources: Source[] }) {
         </button>
       </div>
       {visibles && (
-        <ul className="flex flex-col gap-2" aria-label="Sources du message">
+        <ul className="sx-docs" aria-label="Sources du message">
           {sources.map((s, i) => (
-            <li key={i} className="rounded-box bg-base-200 p-3 text-sm">
-              <p className="font-semibold">{s.titre}</p>
-              <p className="opacity-70">
-                {s.editeur} · {s.date}
-              </p>
+            <li key={i}>
               <LienSource source={s} />
-              {s.verifiee ? (
-                <span className="badge badge-success badge-sm">
-                  Source vérifiée
-                </span>
-              ) : (
-                <span className="badge badge-warning badge-sm">
-                  Donnée de démonstration
-                </span>
-              )}
             </li>
           ))}
         </ul>
@@ -51,31 +40,50 @@ export function ListeSources({ sources }: { sources: Source[] }) {
   );
 }
 
+function Contenu({ source }: { source: Source }) {
+  return (
+    <>
+      <b>{source.titre}</b>
+      <span>
+        {source.editeur} · {source.date} ·{' '}
+        {source.verifiee ? (
+          <span className="chip go">Source vérifiée</span>
+        ) : (
+          <span className="chip wait">Donnée de démonstration</span>
+        )}
+      </span>
+    </>
+  );
+}
+
 function LienSource({ source }: { source: Source }) {
   const [indisponible, setIndisponible] = useState(false);
 
   if (source.url)
     return (
-      <a
-        href={source.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="link link-primary mr-2"
-      >
-        Ouvrir la source ↗
+      <a href={source.url} target="_blank" rel="noopener noreferrer">
+        <Contenu source={source} />
+        <i aria-hidden="true">↗</i>
+        <span className="sr-only">Ouvrir la source (nouvel onglet)</span>
       </a>
     );
 
   return (
     <>
-      <button
-        className="link link-primary mr-2"
-        onClick={() => setIndisponible(true)}
+      <a
+        href="#"
+        role="button"
+        onClick={(e) => {
+          e.preventDefault();
+          setIndisponible(true);
+        }}
       >
-        Ouvrir la source
-      </button>
+        <Contenu source={source} />
+        <i aria-hidden="true">›</i>
+        <span className="sr-only">Ouvrir la source</span>
+      </a>
       {indisponible && (
-        <p role="status" className="alert alert-warning my-2 text-sm">
+        <p role="status" className="reserve" style={{ marginTop: 8 }}>
           Le lien de cette source n&apos;est plus disponible. Référence :{' '}
           {source.titre}, {source.editeur}, {source.date}.
         </p>

@@ -2,6 +2,7 @@
 
 import type { Analyse, Message } from '@/lib/analyse';
 import { raisonsDetaillees } from '@/lib/raisons';
+import { libelleVerdict } from '@/lib/verdict';
 
 // US-24 : les raisons du verdict, reliées aux arguments des agents ; la réserve reste visible
 export function RaisonsVerdict({
@@ -12,36 +13,35 @@ export function RaisonsVerdict({
   onOuvrir: (m: Message) => void;
 }) {
   const raisons = raisonsDetaillees(analyse);
-  const reserve = analyse.verdict?.reserve;
+  const v = analyse.verdict;
 
   return (
-    <section className="flex flex-col gap-3" aria-labelledby="titre-raisons">
-      <h2 id="titre-raisons" className="text-lg font-semibold">
-        Raisons principales
-      </h2>
-      <ol className="flex flex-col gap-2">
+    <section
+      aria-labelledby="titre-raisons"
+      style={{ display: 'grid', gap: 12 }}
+    >
+      <h3 id="titre-raisons">
+        Pourquoi « {v ? libelleVerdict(v.propose) : ''} », selon le Stratège
+      </h3>
+      <ol className="args">
         {raisons.map((r, i) => (
-          <li key={i} className="rounded-box bg-base-100 p-3 shadow-sm">
-            <p>{r.texte}</p>
-            <p className="mt-1 text-xs opacity-70">
-              Argument : {r.message.agent}, tour {r.message.tour} ·{' '}
-              {r.source ? `Source : ${r.source}` : 'Source à compléter'}
-            </p>
-            <button
-              className="link link-primary text-sm"
-              onClick={() => onOuvrir(r.message)}
-            >
-              Voir l&apos;argument
-            </button>
+          <li key={i}>
+            <div>
+              <p>{r.texte}</p>
+              <span className="note">
+                Argument : {r.message.agent}, tour {r.message.tour} ·{' '}
+                {r.source ? `Source : ${r.source}` : 'Source à compléter'}
+              </span>{' '}
+              <button className="src" onClick={() => onOuvrir(r.message)}>
+                Voir l&apos;argument
+              </button>
+            </div>
           </li>
         ))}
       </ol>
-      {reserve && (
-        <div role="note" className="alert alert-warning">
-          <span>
-            <strong>Réserve : </strong>
-            {reserve}
-          </span>
+      {v?.reserve && (
+        <div role="note" className="reserve" style={{ marginTop: 0 }}>
+          <b>Réserve :</b> <span>{v.reserve}</span>
         </div>
       )}
     </section>

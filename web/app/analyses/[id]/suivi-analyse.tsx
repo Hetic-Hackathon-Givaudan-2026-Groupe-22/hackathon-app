@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { apiGet } from '@/lib/api';
 import type { Analyse } from '@/lib/analyse';
+import { couleurFamille } from '@/lib/famille';
 import { formatChrono } from '@/lib/format';
 import { ListeAgents } from './liste-agents';
 import { ResultatAnalyse } from './resultat-analyse';
@@ -11,6 +12,7 @@ import { ResultatAnalyse } from './resultat-analyse';
 // US-14 : suivi d'une analyse lancée, interrogée chaque seconde (ADR 0007)
 export function SuiviAnalyse({ id }: { id: string }) {
   const [analyse, setAnalyse] = useState<Analyse | null>(null);
+  const [famille, setFamille] = useState<string>('');
   const [erreur, setErreur] = useState<string | null>(null);
   // Chronomètre local, recalé sur l'API à chaque réponse
   const [ecoule, setEcoule] = useState(0);
@@ -37,6 +39,15 @@ export function SuiviAnalyse({ id }: { id: string }) {
     };
   }, [id]);
 
+  // Famille de la tendance, pour la couleur du bandeau
+  const slug = analyse?.perimetre.tendance.slug;
+  useEffect(() => {
+    if (!slug) return;
+    apiGet<{ famille: string }>(`/tendances/${slug}`)
+      .then((t) => setFamille(t.famille))
+      .catch(() => setFamille(''));
+  }, [slug]);
+
   useEffect(() => {
     if (!analyse || analyse.statut === 'terminee') return;
     const t = setInterval(
@@ -47,78 +58,66 @@ export function SuiviAnalyse({ id }: { id: string }) {
   }, [analyse]);
 
   if (erreur && !analyse)
-    return <div className="alert alert-error">{erreur}</div>;
-  if (!analyse) return <span className="loading loading-dots" />;
+    return (
+      <div className="empty view">
+        {erreur}
+        <Link href="/tendances" className="lnk">
+          Retour aux tendances
+        </Link>
+      </div>
+    );
+  if (!analyse) return <p className="note view">Chargement…</p>;
 
   const { perimetre } = analyse;
   const enCours = analyse.statut === 'en_cours';
+  const tc = couleurFamille(famille);
 
   return (
     <>
-      <div className="breadcrumbs text-sm">
-        <ul>
-          <li>
-            <Link href="/tendances">Tendances</Link>
-          </li>
-          <li>
-            <Link href={`/tendances/${perimetre.tendance.slug}`}>
-              {perimetre.tendance.nom}
-            </Link>
-          </li>
-          <li>Analyse</li>
-        </ul>
-      </div>
-
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-2xl font-semibold">
-          Analyse : {perimetre.tendance.nom}
-        </h1>
-        {analyse.mode === 'dummy' && (
-          <span className="badge badge-warning">Analyse simulée</span>
-        )}
-      </div>
-
-      <div className="stats stats-vertical bg-base-100 shadow-sm sm:stats-horizontal">
-        <div className="stat">
-          <div className="stat-title">Tendance</div>
-          <div className="stat-value text-lg">{perimetre.tendance.nom}</div>
-        </div>
-        <div className="stat">
-          <div className="stat-title">Marché</div>
-          <div className="stat-value text-lg">{perimetre.marche}</div>
-        </div>
-        <div className="stat">
-          <div className="stat-title">Période</div>
-          <div className="stat-value text-lg">{perimetre.periode}</div>
-        </div>
-        <div className="stat">
-          <div className="stat-title">Chronomètre</div>
-          <div
-            className="stat-value font-mono text-lg"
-            aria-live="off"
+      <div
+        className="trendbar gutter"
+        style={{ '--tc': tc } as React.CSSProperties}
+      >
+        <div className="tb-in">
+          <span className="tb-l">Tendance analysée</span>
+          <span className="tb-n">
+            <i className="dot" style={{ background: `rgb(${tc})` }} />
+            {perimetre.tendance.nom}
+          </span>
+          <span className={`chip ${enCours ? 'wait' : 'go'}`}>
+            {enCours ? 'Analyse en cours' : 'Analyse terminée'}
+          </span>
+          <span className="tb-r">
+            {perimetre.marche} · {perimetre.periode}
+          </span>
+          {analyse.mode === 'dummy' && (
+            <span className="ph">Analyse simulée</span>
+          )}
+          <span
+            className={`chrono${enCours ? '' : ' stop'}`}
             data-testid="chrono"
+            aria-label="Chronomètre"
           >
             {formatChrono(ecoule)}
-          </div>
-          <div className="stat-desc">
-            {enCours
-              ? `${analyse.agents.length} agents au travail`
-              : 'Analyse terminée'}
-          </div>
+          </span>
+          <Link
+            href={`/tendances/${perimetre.tendance.slug}`}
+            className="btn sm ghost tb-b"
+          >
+            Fiche de la tendance
+          </Link>
         </div>
       </div>
 
-      {enCours && (
-        <progress
-          className="progress progress-primary w-full"
-          value={ecoule}
-          max={analyse.dureeMs}
-        />
-      )}
-
-      <ListeAgents agents={analyse.agents} />
-
-      {!enCours && <ResultatAnalyse analyse={analyse} onMaj={setAnalyse} />}
+      <section className="view">
+        <div className="eyebrow">
+          {enCours
+            ? `${analyse.agents.length} agents au travail`
+            : 'Les agents ont terminé'}
+        </div>
+        <ListeAgents agents={analyse.agents} />
+        {!enCours && <ResultatAnalyse analyse={analyse} onMaj={setAnalyse} />}
+      </section>
     </>
   );
 }

@@ -10,10 +10,8 @@ async function Suivi({ params }: { params: Promise<{ id: string }> }) {
 
 export default function PageAnalyse({ params }: PageProps<'/analyses/[id]'>) {
   return (
-    <main className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 py-10">
-      <Suspense fallback={<span className="loading loading-dots" />}>
-        <Suivi params={params} />
-      </Suspense>
-    </main>
+    <Suspense fallback={<p className="note view">Chargement…</p>}>
+      <Suivi params={params} />
+    </Suspense>
   );
 }
