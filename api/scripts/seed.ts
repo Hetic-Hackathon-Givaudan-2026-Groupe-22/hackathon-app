@@ -1,9 +1,9 @@
 // Données de démonstration (ADR 0005) : npm run db:seed -w api
 // Rejouable : vide les tables puis réinsère les mêmes lignes.
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { sql } from 'drizzle-orm';
+import { eq, inArray, sql } from 'drizzle-orm';
 import pg from 'pg';
-import { tendances, utilisateurs } from '../src/db/schema.ts';
+import { suivis, tendances, utilisateurs } from '../src/db/schema.ts';
 import { hacher } from '../src/auth/mot-de-passe.ts';
 
 try {
@@ -139,6 +139,18 @@ async function main() {
       metier: 'Consumer Insights',
     })
     .onConflictDoNothing({ target: utilisateurs.email });
+  const [demo] = await db
+    .select({ id: utilisateurs.id })
+    .from(utilisateurs)
+    .where(eq(utilisateurs.email, COMPTE_DEMO.email));
+  const suivies = await db
+    .select({ id: tendances.id })
+    .from(tendances)
+    .where(inArray(tendances.slug, ['pistache', 'matcha']));
+  await db
+    .insert(suivis)
+    .values(suivies.map((t) => ({ utilisateurId: demo.id, tendanceId: t.id })))
+    .onConflictDoNothing();
   console.log(`Compte de démonstration : ${COMPTE_DEMO.email}`);
   await pool.end();
 }
