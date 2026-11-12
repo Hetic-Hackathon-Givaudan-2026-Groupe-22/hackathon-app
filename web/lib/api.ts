@@ -53,3 +53,23 @@ export async function apiPost<T>(chemin: string, corps?: unknown): Promise<T> {
     }),
   );
 }
+
+async function envoyer<T>(
+  methode: 'PATCH' | 'PUT' | 'DELETE',
+  chemin: string,
+  corps?: unknown,
+): Promise<T> {
+  return lire<T>(
+    await fetch(`/api${chemin}`, {
+      method: methode,
+      headers: { 'Content-Type': 'application/json' },
+      body: corps === undefined ? undefined : JSON.stringify(corps),
+    }),
+  );
+}
+
+export const apiPatch = <T>(chemin: string, corps?: unknown) =>
+  envoyer<T>('PATCH', chemin, corps);
+
+export const apiPut = <T>(chemin: string, corps?: unknown) =>
+  envoyer<T>('PUT', chemin, corps);

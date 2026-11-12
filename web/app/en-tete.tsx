@@ -27,7 +27,12 @@ export function EnTete() {
           Sillage
         </Link>
         <NavEtapes />
-        <span className="prof" style={{ marginLeft: 'auto' }}>
+        <Link
+          href="/profil"
+          className="prof"
+          style={{ marginLeft: 'auto' }}
+          title="Mon profil"
+        >
           <span className="av" aria-hidden="true">
             {initiales(utilisateur.nom)}
           </span>
@@ -35,7 +40,7 @@ export function EnTete() {
             {utilisateur.nom}
             {utilisateur.metier ? ` · ${utilisateur.metier}` : ''}
           </span>
-        </span>
+        </Link>
         <button
           className="btn sm ghost"
           onClick={async () => {

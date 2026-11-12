@@ -84,7 +84,8 @@ export function Acces() {
             motDePasse,
           });
       setUtilisateur(u);
-      router.push('/tendances');
+      // Un nouveau compte passe par l'onboarding (US-05)
+      router.push(inscription ? '/onboarding' : '/tendances');
     } catch (err) {
       setErreur((err as Error).message);
       if (err instanceof ApiError && err.status === 409)
