@@ -3640,3 +3640,15 @@ a.prof {
   text-decoration: none;
   color: inherit;
 }
+.fsel {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 700;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+.fbtn.on .fsel option {
+  color: var(--ink);
+}
