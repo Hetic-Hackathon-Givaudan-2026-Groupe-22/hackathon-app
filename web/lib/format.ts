@@ -27,3 +27,15 @@ const STATUTS: Record<string, string> = {
 export function libelleStatut(statut: string): string {
   return STATUTS[statut] ?? statut;
 }
+
+// « 2026-11-12T19:30:00Z » -> « 12/11/2026 20:30 » (date d'une décision, US-25)
+export function formatDateHeure(iso: string): string {
+  return new Date(iso).toLocaleString('fr-FR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Paris',
+  });
+}

@@ -118,7 +118,7 @@ export function SuiviAnalyse({ id }: { id: string }) {
 
       <ListeAgents agents={analyse.agents} />
 
-      {!enCours && <ResultatAnalyse analyse={analyse} />}
+      {!enCours && <ResultatAnalyse analyse={analyse} onMaj={setAnalyse} />}
     </>
   );
 }
