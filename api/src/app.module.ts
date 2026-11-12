@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AnalysesModule } from './analyses/analyses.module.js';
 import { AuthModule } from './auth/auth.module.js';
+import { PlanModule } from './plan/plan.module.js';
 import { CompteModule } from './compte/compte.module.js';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
@@ -15,6 +16,7 @@ import { TendancesModule } from './tendances/tendances.module.js';
     CompteModule,
     TendancesModule,
     AnalysesModule,
+    PlanModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService],

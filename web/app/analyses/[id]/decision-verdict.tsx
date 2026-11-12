@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { apiPost } from '@/lib/api';
 import type { Analyse } from '@/lib/analyse';
@@ -156,8 +157,13 @@ export function DecisionVerdict({
         <h3>Plan d&apos;action</h3>
         <p className="note" style={{ margin: 0 }}>
           Le verdict est officiel : le plan d&apos;action de la tendance est
-          accessible. Son contenu arrive avec US-27.
+          accessible.
         </p>
+        <div>
+          <Link href={`/analyses/${analyse.id}/plan`} className="btn">
+            Ouvrir le plan d&apos;action <span aria-hidden="true">›</span>
+          </Link>
+        </div>
       </div>
     </section>
   );

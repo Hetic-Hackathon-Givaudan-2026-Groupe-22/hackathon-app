@@ -8,7 +8,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { apiGet, apiPost } from './api';
+import { ApiError, apiGet, apiPost } from './api';
 
 // La personne connectée (ADR 0012) ; le cookie de session est httpOnly
 export type Utilisateur = {
@@ -29,7 +29,23 @@ type Session = {
 
 const ContexteSession = createContext<Session | null>(null);
 
-const lireSession = () => apiGet<Utilisateur>('/auth/moi').catch(() => null);
+// Seul un 401 veut dire « pas de session » ; une API injoignable (redémarrage)
+// ne déconnecte personne : on réessaie
+export async function lireSession(
+  attendre: (ms: number) => Promise<void> = (ms) =>
+    new Promise((r) => setTimeout(r, ms)),
+  essais = 20,
+): Promise<Utilisateur | null> {
+  for (let i = 0; ; i++) {
+    try {
+      return await apiGet<Utilisateur>('/auth/moi');
+    } catch (e) {
+      if (e instanceof ApiError && e.status === 401) return null;
+      if (i >= essais - 1) return null;
+      await attendre(1000);
+    }
+  }
+}
 
 // Une seule lecture de la session, partagée par toute l'app
 export function SessionProvider({ children }: { children: React.ReactNode }) {
