@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { TendanceResume } from '@/lib/api';
 import { couleurFamille, statutTendance } from '@/lib/famille';
+import { LegendeGlobe } from './legende';
 import {
   pointsDeTerre,
   projeter,
@@ -252,6 +253,7 @@ export function Globe({ tendances }: { tendances: TendanceResume[] }) {
         role="img"
         aria-label="Globe des tendances : faites-le tourner à la souris ou au doigt. La liste donne accès aux mêmes tendances au clavier."
       />
+      <LegendeGlobe />
       {bulle && (
         <div
           className="bub"
