@@ -1,4 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { z } from 'zod';
 import { TendancesService } from './tendances.service.js';
 
@@ -6,6 +12,9 @@ import { TendancesService } from './tendances.service.js';
 export const rechercheSchema = z.object({
   q: z.string().trim().max(60).optional(),
 });
+
+// Identifiant d'une tendance dans l'URL : « pistache », « fleur-oranger »
+export const slugSchema = z.string().regex(/^[a-z0-9-]{1,60}$/);
 
 @Controller('tendances')
 export class TendancesController {
@@ -17,5 +26,13 @@ export class TendancesController {
     @Query({ schema: rechercheSchema }) query: z.infer<typeof rechercheSchema>,
   ) {
     return this.tendances.lister(query.q || undefined);
+  }
+
+  // GET /api/tendances/:slug : la fiche (US-13)
+  @Get(':slug')
+  async fiche(@Param('slug', { schema: slugSchema }) slug: string) {
+    const tendance = await this.tendances.trouver(slug);
+    if (!tendance) throw new NotFoundException('Tendance introuvable');
+    return tendance;
   }
 }
