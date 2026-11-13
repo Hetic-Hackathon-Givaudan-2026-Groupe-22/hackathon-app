@@ -1,4 +1,9 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { asc, eq } from 'drizzle-orm';
 import { AnalysesService } from '../analyses/analyses.service.js';
 import { DRIZZLE, type Database } from '../database/database.module.js';
@@ -65,5 +70,27 @@ export class PlanService {
         nom: m.nom,
       })),
     };
+  }
+
+  // US-28 : ajouter une équipe ; une équipe déjà présente n'est pas ajoutée deux fois
+  async ajouterEquipe(id: number, equipe: string) {
+    await this.contexte(id);
+    if (!MODELES.some((m) => m.cle === equipe)) {
+      throw new BadRequestException('Équipe inconnue');
+    }
+    const cles = await this.cles(id);
+    if (cles.includes(equipe)) {
+      throw new ConflictException('Cette équipe est déjà dans le plan.');
+    }
+    const nouvelles = [...cles, equipe];
+    await this.db.transaction(async (tx) => {
+      await tx.delete(planEquipes).where(eq(planEquipes.analyseId, id));
+      await tx
+        .insert(planEquipes)
+        .values(
+          nouvelles.map((e, ordre) => ({ analyseId: id, equipe: e, ordre })),
+        );
+    });
+    return this.obtenir(id);
   }
 }
