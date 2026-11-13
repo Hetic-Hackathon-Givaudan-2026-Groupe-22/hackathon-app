@@ -1,4 +1,4 @@
-import type { Analyse, Message } from './analyse';
+import type { Analyse, Message, Source } from './analyse';
 
 export type RaisonDetaillee = {
   texte: string;
@@ -23,4 +23,19 @@ export function raisonsDetaillees(analyse: Analyse): RaisonDetaillee[] {
     })
     .filter((r): r is RaisonDetaillee => r !== null)
     .slice(0, 3);
+}
+
+// US-32 : les sources des arguments retenus par le verdict, sans doublon
+export function sourcesDuVerdict(analyse: Analyse): Source[] {
+  const vues = new Set<string>();
+  const liste: Source[] = [];
+  for (const r of raisonsDetaillees(analyse)) {
+    for (const s of r.message.sources) {
+      const cle = `${s.titre}|${s.editeur}|${s.date}`;
+      if (vues.has(cle)) continue;
+      vues.add(cle);
+      liste.push(s);
+    }
+  }
+  return liste;
 }

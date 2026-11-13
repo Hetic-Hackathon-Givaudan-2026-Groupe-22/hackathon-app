@@ -150,7 +150,10 @@ export default function Historique() {
                   <tr key={d.analyseId}>
                     <td className="mono">{formatDateHeure(d.decideLe)}</td>
                     <td>
-                      <Link href={`/analyses/${d.analyseId}`} className="lnk">
+                      <Link
+                        href={`/analyses/${d.analyseId}?vue=verdict`}
+                        className="lnk"
+                      >
                         {d.tendance.nom}
                       </Link>
                     </td>

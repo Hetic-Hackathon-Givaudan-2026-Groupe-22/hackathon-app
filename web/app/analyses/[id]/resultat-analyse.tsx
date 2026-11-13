@@ -5,7 +5,9 @@ import type { Analyse, Message } from '@/lib/analyse';
 import { ChaineMatieres } from './chaine-matieres';
 import { DecisionVerdict } from './decision-verdict';
 import { DetailMessage } from './detail-message';
+import { EnteteDecision } from './entete-decision';
 import { RaisonsVerdict } from './raisons-verdict';
+import { SourcesVerdict } from './sources-verdict';
 import { TourDeTable } from './tour-de-table';
 import { VerdictAnalyse } from './verdict-analyse';
 
@@ -21,11 +23,13 @@ const ONGLETS: { id: Onglet; libelle: string }[] = [
 export function ResultatAnalyse({
   analyse,
   onMaj,
+  vue = 'tour',
 }: {
   analyse: Analyse;
   onMaj: (a: Analyse) => void;
+  vue?: Onglet;
 }) {
-  const [onglet, setOnglet] = useState<Onglet>('tour');
+  const [onglet, setOnglet] = useState<Onglet>(vue);
   const [ouvert, setOuvert] = useState<Message | null>(null);
   const messages = analyse.messages ?? [];
 
@@ -51,10 +55,12 @@ export function ResultatAnalyse({
 
       {onglet === 'verdict' && (
         <div className="narrow" style={{ marginTop: 18 }}>
+          <EnteteDecision analyse={analyse} />
           <VerdictAnalyse
             analyse={analyse}
             raisons={<RaisonsVerdict analyse={analyse} onOuvrir={setOuvert} />}
           />
+          <SourcesVerdict analyse={analyse} />
           <DecisionVerdict analyse={analyse} onMaj={onMaj} />
         </div>
       )}

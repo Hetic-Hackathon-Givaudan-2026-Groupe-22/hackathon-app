@@ -11,7 +11,13 @@ import { Rejouer } from './rejouer';
 import { ResultatAnalyse } from './resultat-analyse';
 
 // US-14 : suivi d'une analyse lancée, interrogée chaque seconde (ADR 0007)
-export function SuiviAnalyse({ id }: { id: string }) {
+export function SuiviAnalyse({
+  id,
+  vue = 'tour',
+}: {
+  id: string;
+  vue?: 'tour' | 'verdict';
+}) {
   const [analyse, setAnalyse] = useState<Analyse | null>(null);
   const [famille, setFamille] = useState<string>('');
   const [erreur, setErreur] = useState<string | null>(null);
@@ -129,7 +135,9 @@ export function SuiviAnalyse({ id }: { id: string }) {
             : 'Les agents ont terminé'}
         </div>
         <ListeAgents agents={analyse.agents} />
-        {!enCours && <ResultatAnalyse analyse={analyse} onMaj={setAnalyse} />}
+        {!enCours && (
+          <ResultatAnalyse analyse={analyse} onMaj={setAnalyse} vue={vue} />
+        )}
       </section>
       {rejeu && <Rejouer analyse={analyse} onFermer={() => setRejeu(false)} />}
     </>
