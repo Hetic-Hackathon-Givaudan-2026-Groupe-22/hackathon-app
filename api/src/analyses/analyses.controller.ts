@@ -82,7 +82,7 @@ export class AnalysesController {
     @Param('id', { schema: idSchema }) id: number,
     @Utilisateur() utilisateur: UtilisateurPublic,
   ) {
-    return this.analyses.valider(id, utilisateur.nom);
+    return this.analyses.valider(id, utilisateur.nom, utilisateur.id);
   }
 
   // POST /api/analyses/:id/verdict/modification (US-26)
@@ -95,6 +95,6 @@ export class AnalysesController {
     body: z.infer<typeof modificationSchema>,
     @Utilisateur() utilisateur: UtilisateurPublic,
   ) {
-    return this.analyses.modifier(id, body, utilisateur.nom);
+    return this.analyses.modifier(id, body, utilisateur.nom, utilisateur.id);
   }
 }

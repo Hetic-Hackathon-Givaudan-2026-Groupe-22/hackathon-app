@@ -19,6 +19,13 @@ export function NavEtapes() {
       <span className="step" aria-current={enAnalyse ? 'page' : undefined}>
         2 · Analyse et verdict
       </span>
+      <Link
+        href="/historique"
+        className="step"
+        aria-current={chemin.startsWith('/historique') ? 'page' : undefined}
+      >
+        3 · Historique
+      </Link>
     </nav>
   );
 }

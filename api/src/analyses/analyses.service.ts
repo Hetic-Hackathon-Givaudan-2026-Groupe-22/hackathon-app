@@ -204,13 +204,14 @@ export class AnalysesService {
   }
 
   // US-25 : Camille valide le verdict proposé ; il passe au statut « Validé », daté et signé
-  async valider(id: number, decidePar: string) {
+  async valider(id: number, decidePar: string, decideParId?: number) {
     await this.verdictADecider(id);
     await this.db
       .update(verdicts)
       .set({
         statut: 'valide',
         decidePar,
+        decideParId,
         decideLe: new Date(),
       })
       .where(eq(verdicts.analyseId, id));
@@ -223,6 +224,7 @@ export class AnalysesService {
     id: number,
     choix: { verdict: 'buzz' | 'durable'; justification: string },
     decidePar: string,
+    decideParId?: number,
   ) {
     const propose = await this.verdictADecider(id);
     if (choix.verdict === propose.propose) {
@@ -237,6 +239,7 @@ export class AnalysesService {
         final: choix.verdict,
         justification: choix.justification,
         decidePar,
+        decideParId,
         decideLe: new Date(),
       })
       .where(eq(verdicts.analyseId, id));
@@ -281,5 +284,38 @@ export class AnalysesService {
         nom: l.nom,
         points: courbeSimulee(l.slug, l.statut, mois),
       }));
+  }
+
+  // US-30 : les décisions d'une personne, de la plus récente à la plus ancienne
+  async decisions(decideParId: number) {
+    const lignes = await this.db
+      .select({
+        analyseId: analyses.id,
+        slug: tendances.slug,
+        nom: tendances.nom,
+        propose: verdicts.propose,
+        final: verdicts.final,
+        statut: verdicts.statut,
+        score: verdicts.score,
+        justification: verdicts.justification,
+        decidePar: verdicts.decidePar,
+        decideLe: verdicts.decideLe,
+      })
+      .from(verdicts)
+      .innerJoin(analyses, eq(verdicts.analyseId, analyses.id))
+      .innerJoin(tendances, eq(analyses.tendanceId, tendances.id))
+      .where(eq(verdicts.decideParId, decideParId))
+      .orderBy(desc(verdicts.decideLe), desc(verdicts.id));
+    return lignes.map((l) => ({
+      analyseId: l.analyseId,
+      tendance: { slug: l.slug, nom: l.nom },
+      propose: l.propose,
+      retenu: l.statut === 'modifie' && l.final ? l.final : l.propose,
+      statut: l.statut,
+      score: l.score,
+      justification: l.justification,
+      decidePar: l.decidePar,
+      decideLe: l.decideLe?.toISOString() ?? null,
+    }));
   }
 }

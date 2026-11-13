@@ -57,6 +57,13 @@
       "when": 1794528342398,
       "tag": "0007_alertes",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794528657563,
+      "tag": "0008_decideur",
+      "breakpoints": true
     }
   ]
 }
