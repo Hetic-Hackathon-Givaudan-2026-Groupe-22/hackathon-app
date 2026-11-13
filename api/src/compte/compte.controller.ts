@@ -15,9 +15,15 @@ import { AnalysesService } from '../analyses/analyses.service.js';
 import { CompteService, METIERS } from './compte.service.js';
 
 // Corps de PATCH /api/moi (US-05), validé par Zod (ADR 0008)
-export const profilSchema = z.object({
-  metier: z.enum(METIERS),
-});
+export const profilSchema = z
+  .object({
+    metier: z.enum(METIERS).optional(),
+    // US-07 : langue de l'interface, gardée à la reconnexion
+    langue: z.enum(['fr', 'en']).optional(),
+  })
+  .refine((p) => p.metier !== undefined || p.langue !== undefined, {
+    message: 'Rien à modifier',
+  });
 
 // Corps de PUT /api/moi/suivis (US-06)
 export const suivisSchema = z.object({

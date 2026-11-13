@@ -22,11 +22,14 @@ export class CompteService {
 
   async modifierProfil(
     id: number,
-    modif: { metier: string },
+    modif: { metier?: string; langue?: string },
   ): Promise<UtilisateurPublic> {
     const [u] = await this.db
       .update(utilisateurs)
-      .set({ metier: modif.metier })
+      .set({
+        ...(modif.metier !== undefined && { metier: modif.metier }),
+        ...(modif.langue !== undefined && { langue: modif.langue }),
+      })
       .where(eq(utilisateurs.id, id))
       .returning();
     return publier(u);

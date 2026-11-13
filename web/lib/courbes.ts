@@ -21,9 +21,9 @@ export function cheminSvg(
 }
 
 // « 2026-11 » -> « nov. 26 »
-export function moisCourt(mois: string): string {
+export function moisCourt(mois: string, locale = 'fr-FR'): string {
   const [a, m] = mois.split('-').map(Number);
-  return new Date(Date.UTC(a, m - 1, 1)).toLocaleDateString('fr-FR', {
+  return new Date(Date.UTC(a, m - 1, 1)).toLocaleDateString(locale, {
     month: 'short',
     year: '2-digit',
     timeZone: 'UTC',

@@ -1,4 +1,8 @@
 import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+// next-intl lit i18n/request.ts (ADR 0016)
+const avecNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 // Adresse de l'API NestJS : réglable par API_URL, localhost:3000 en dev
 const apiUrl = process.env.API_URL ?? 'http://localhost:3000';
@@ -20,4 +24,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default avecNextIntl(nextConfig);
