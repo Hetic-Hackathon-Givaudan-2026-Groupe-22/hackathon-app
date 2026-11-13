@@ -1,0 +1,1 @@
+ALTER TABLE "verdicts" ADD COLUMN "decide_par_id" integer;

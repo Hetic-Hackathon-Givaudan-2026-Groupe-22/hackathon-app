@@ -123,6 +123,8 @@ export const verdicts = pgTable('verdicts', {
   final: text('final'),
   justification: text('justification'),
   decidePar: text('decide_par'),
+  // Compte qui a décidé (historique, US-30)
+  decideParId: integer('decide_par_id'),
   decideLe: timestamp('decide_le', { withTimezone: true }),
 });
 
