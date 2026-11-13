@@ -3652,3 +3652,10 @@ a.prof {
 .fbtn.on .fsel option {
   color: var(--ink);
 }
+.ch[aria-checked='true'] {
+  border: 2px solid var(--ink);
+  padding: 11px;
+}
+.ch[aria-checked='true'] .tick {
+  opacity: 1;
+}

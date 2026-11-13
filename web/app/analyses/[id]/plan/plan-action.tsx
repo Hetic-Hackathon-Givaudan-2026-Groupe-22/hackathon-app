@@ -12,6 +12,7 @@ import {
   type Plan,
 } from '@/lib/plan';
 import { libelleVerdict } from '@/lib/verdict';
+import { EnvoiAlerte } from './envoi-alerte';
 
 // US-27 : le plan d'action par équipe, repris du prototype
 export function PlanAction({ id }: { id: string }) {
@@ -211,6 +212,7 @@ export function PlanAction({ id }: { id: string }) {
           </ol>
         </div>
       )}
+      <EnvoiAlerte id={id} plan={plan} />
     </>
   );
 }
