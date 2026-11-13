@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ApiError, apiGet } from '@/lib/api';
+import { ApiError, apiGet, apiPost } from '@/lib/api';
 import { formatDateHeure } from '@/lib/format';
 import {
   CHIP_PRIORITE,
@@ -19,6 +19,8 @@ export function PlanAction({ id }: { id: string }) {
   const [aValider, setAValider] = useState<string | null>(null);
   const [erreur, setErreur] = useState<string | null>(null);
   const [choisie, setChoisie] = useState<string | null>(null);
+  const [ajout, setAjout] = useState(false);
+  const [erreurAjout, setErreurAjout] = useState<string | null>(null);
 
   useEffect(() => {
     apiGet<Plan>(`/analyses/${encodeURIComponent(id)}/plan`)
@@ -55,6 +57,22 @@ export function PlanAction({ id }: { id: string }) {
   if (!plan) return <p className="note">Chargement…</p>;
 
   const equipe = plan.equipes.find((e) => e.cle === choisie) ?? plan.equipes[0];
+
+  // US-28 : ajouter une équipe au plan ; la liste ne propose que les absentes
+  async function ajouter(cle: string) {
+    setErreurAjout(null);
+    try {
+      const p = await apiPost<Plan>(
+        `/analyses/${encodeURIComponent(id)}/plan/equipes`,
+        { equipe: cle },
+      );
+      setPlan(p);
+      setChoisie(cle);
+      setAjout(false);
+    } catch (e) {
+      setErreurAjout((e as Error).message);
+    }
+  }
 
   return (
     <>
@@ -104,7 +122,60 @@ export function PlanAction({ id }: { id: string }) {
             </button>
           );
         })}
+        {plan.disponibles.length > 0 && (
+          <button className="pcard add" onClick={() => setAjout(true)}>
+            <span className="ico">+</span>
+            <b>Ajouter une équipe</b>
+            <span className="note">
+              {plan.disponibles.map((d) => d.nom).join(', ')}
+            </span>
+          </button>
+        )}
       </div>
+
+      {ajout && (
+        <div
+          className="modal"
+          role="presentation"
+          onClick={() => setAjout(false)}
+        >
+          <div
+            className="mpanel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="titre-ajout"
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => e.key === 'Escape' && setAjout(false)}
+          >
+            <div className="phead">
+              <h3 id="titre-ajout">Ajouter une équipe au plan</h3>
+              <button className="x" onClick={() => setAjout(false)} autoFocus>
+                Fermer
+              </button>
+            </div>
+            <div className="cat">
+              {plan.disponibles.map((d) => {
+                const [lettre, fond] = iconeEquipe(d.cle);
+                return (
+                  <button key={d.cle} onClick={() => ajouter(d.cle)}>
+                    <span className="ico" style={{ background: fond }}>
+                      {lettre}
+                    </span>
+                    <span className="t">
+                      <b>{d.nom}</b>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            {erreurAjout && (
+              <p className="hint" role="alert">
+                {erreurAjout}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
 
       {equipe && (
         <div className="card" role="tabpanel" style={{ marginTop: 20 }}>
