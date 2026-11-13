@@ -174,3 +174,19 @@ export const planEquipes = pgTable(
   },
   (t) => [primaryKey({ columns: [t.analyseId, t.equipe] })],
 );
+
+// Alertes envoyées depuis le plan d'action (US-29) : envoi simulé, tracé (ADR 0015)
+export const alertes = pgTable('alertes', {
+  id: serial('id').primaryKey(),
+  analyseId: integer('analyse_id')
+    .notNull()
+    .references(() => analyses.id, { onDelete: 'cascade' }),
+  // email | teams | slack
+  canal: text('canal').notNull(),
+  destinataires: jsonb('destinataires').$type<string[]>().notNull(),
+  contenu: text('contenu').notNull(),
+  envoyeePar: text('envoyee_par').notNull(),
+  envoyeeLe: timestamp('envoyee_le', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});

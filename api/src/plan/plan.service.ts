@@ -7,7 +7,7 @@ import {
 import { asc, eq } from 'drizzle-orm';
 import { AnalysesService } from '../analyses/analyses.service.js';
 import { DRIZZLE, type Database } from '../database/database.module.js';
-import { planEquipes } from '../db/schema.js';
+import { alertes, planEquipes } from '../db/schema.js';
 import {
   construireEquipe,
   type Contexte,
@@ -23,7 +23,7 @@ export class PlanService {
   ) {}
 
   // Le plan n'existe qu'après un verdict validé ou modifié (US-27)
-  private async contexte(id: number): Promise<Contexte> {
+  private async contexte(id: number): Promise<Contexte & { score: number }> {
     const a = await this.analyses.obtenir(id);
     const v = 'verdict' in a ? a.verdict : null;
     if (!v || v.statut === 'propose' || !v.decideLe) {
@@ -42,6 +42,7 @@ export class PlanService {
         ('chaine' in a ? a.chaine.substituts?.[0]?.substitut : undefined) ??
         null,
       decideLe: new Date(v.decideLe),
+      score: v.score,
     };
   }
 
@@ -61,6 +62,7 @@ export class PlanService {
     return {
       tendance: c.tendance,
       verdict: c.verdict,
+      score: c.score,
       decideLe: c.decideLe.toISOString(),
       equipes: cles
         .map((k) => construireEquipe(k, c))
@@ -92,5 +94,38 @@ export class PlanService {
         );
     });
     return this.obtenir(id);
+  }
+
+  // US-29 : l'alerte n'est jamais envoyée pour de vrai ; elle est enregistrée (ADR 0015)
+  async envoyerAlerte(
+    id: number,
+    envoi: {
+      canal: 'email' | 'teams' | 'slack';
+      destinataires: string[];
+      lien: string;
+    },
+    envoyeePar: string,
+  ) {
+    const c = await this.contexte(id);
+    const verdict = c.verdict === 'durable' ? 'Durable' : 'Buzz';
+    const contenu = `Sillage · ${c.tendance} : ${verdict}, score ${c.score}/100. Analyse : ${envoi.lien}`;
+    const destinataires = [...new Set(envoi.destinataires)];
+    const [a] = await this.db
+      .insert(alertes)
+      .values({
+        analyseId: id,
+        canal: envoi.canal,
+        destinataires,
+        contenu,
+        envoyeePar,
+      })
+      .returning();
+    return {
+      canal: a.canal,
+      nombre: destinataires.length,
+      contenu: a.contenu,
+      envoyeeLe: a.envoyeeLe.toISOString(),
+      simule: true,
+    };
   }
 }

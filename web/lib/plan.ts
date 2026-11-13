@@ -19,6 +19,7 @@ export type Equipe = {
 export type Plan = {
   tendance: string;
   verdict: 'buzz' | 'durable';
+  score: number;
   decideLe: string;
   equipes: Equipe[];
   disponibles: { cle: string; nom: string }[];
@@ -56,4 +57,40 @@ export function iconeEquipe(cle: string): [string, string] {
 export function jourMois(iso: string): string {
   const [, m, j] = iso.split('-');
   return `${j}/${m}`;
+}
+
+// Canaux d'alerte (US-29) : l'envoi est simulé (ADR 0015)
+export const CANAUX = [
+  {
+    cle: 'email',
+    nom: 'E-mail',
+    aide: 'Adresses séparées par des virgules',
+    ico: ['@', '#E3EEFF'],
+  },
+  {
+    cle: 'teams',
+    nom: 'Teams',
+    aide: 'Noms ou canaux, séparés par des virgules',
+    ico: ['T', '#E8ECFB'],
+  },
+  {
+    cle: 'slack',
+    nom: 'Slack',
+    aide: 'Canaux, séparés par des virgules',
+    ico: ['#', '#FDE3EA'],
+  },
+] as const;
+
+export type Canal = (typeof CANAUX)[number]['cle'];
+
+// « a@x.fr, b@y.fr ,, » -> ['a@x.fr', 'b@y.fr'], sans doublon
+export function listeDestinataires(saisie: string): string[] {
+  return [
+    ...new Set(
+      saisie
+        .split(/[,;\n]/)
+        .map((d) => d.trim())
+        .filter(Boolean),
+    ),
+  ];
 }
