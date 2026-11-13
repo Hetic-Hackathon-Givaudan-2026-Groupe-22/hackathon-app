@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Analyse, Message } from './analyse';
-import { raisonsDetaillees } from './raisons';
+import { raisonsDetaillees, sourcesDuVerdict } from './raisons';
 
 const msg = (tour: number, avecSource: boolean): Message => ({
   tour,
@@ -69,5 +69,18 @@ describe('raisonsDetaillees (US-24)', () => {
 
   it('ignore une raison dont l’argument est introuvable', () => {
     expect(raisonsDetaillees(analyse([9]))).toEqual([]);
+  });
+});
+
+describe('sourcesDuVerdict (US-32)', () => {
+  it('les sources des arguments retenus, sans doublon', () => {
+    // Les messages 1, 3 et 4 portent la même source FT ; le 2 n'en a pas
+    const sources = sourcesDuVerdict(analyse([1, 2, 3]));
+    expect(sources).toHaveLength(1);
+    expect(sources[0].editeur).toBe('Financial Times');
+  });
+
+  it('aucune source si les arguments n’en ont pas', () => {
+    expect(sourcesDuVerdict(analyse([2]))).toEqual([]);
   });
 });
