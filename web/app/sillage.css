@@ -3659,3 +3659,11 @@ a.prof {
 .ch[aria-checked='true'] .tick {
   opacity: 1;
 }
+.intro-page {
+  position: relative;
+}
+.langue-accueil {
+  position: absolute;
+  top: 16px;
+  right: 0;
+}

@@ -1,6 +1,6 @@
 # 0013. Traduire l'interface avec un dictionnaire maison
 
-- Statut : acceptée
+- Statut : remplacée par [0016](0016-traduction-next-intl.md)
 - Date : 2026-11-13
 - Décideurs : Kuami (tech-lead)
 

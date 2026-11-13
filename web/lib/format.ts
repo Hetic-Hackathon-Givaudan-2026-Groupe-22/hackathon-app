@@ -9,8 +9,8 @@ export function formatChrono(ms: number): string {
 }
 
 // « 2023-09-01 » -> « sept. 2023 »
-export function formatMois(isoDate: string): string {
-  return new Date(`${isoDate}T00:00:00Z`).toLocaleDateString('fr-FR', {
+export function formatMois(isoDate: string, locale = 'fr-FR'): string {
+  return new Date(`${isoDate}T00:00:00Z`).toLocaleDateString(locale, {
     month: 'short',
     year: 'numeric',
     timeZone: 'UTC',
@@ -29,8 +29,8 @@ export function libelleStatut(statut: string): string {
 }
 
 // « 2026-11-12T19:30:00Z » -> « 12/11/2026 20:30 » (date d'une décision, US-25)
-export function formatDateHeure(iso: string): string {
-  return new Date(iso).toLocaleString('fr-FR', {
+export function formatDateHeure(iso: string, locale = 'fr-FR'): string {
+  return new Date(iso).toLocaleString(locale, {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
